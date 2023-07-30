@@ -7,9 +7,8 @@ function LoginPage(){
 
     }
     return <div id="LoginPage">
-        
+        <h1><span className="highlight2">Log</span>in</h1>
         <form onSubmit={handeSubmit}>
-        <h1><span className="highlight">Log</span>in</h1>
             <label htmlFor="">Username</label>
             <input type="text" />
             <label htmlFor="">Password</label>
