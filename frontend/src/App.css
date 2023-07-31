@@ -34,20 +34,32 @@
 display: grid;
 height: 70vh;
 width: 80vw;
-background-color: rgb(42, 42, 42);
+
 
  grid-template-columns: 1fr 1fr;
- grid-template-rows: 1fr 1fr;
+ grid-template-rows: 1fr, 1fr;
  justify-items: center;
  align-items: center;
 
+
+}
+
+#LoginPage .background{
+ height: 50vh;
+ width: 20vw;
+ background-color: rgb(42, 42, 42);
+display: flex;
+flex-direction: column;
+gap: 5vh;
+padding: 5vh;
+box-sizing: border-box;
 }
 
 #LoginPage form{
   display: flex;
   flex-direction: column;
   width: 10vw;
-  gap: 3vh;
+  gap: 5vh;
  
 
   border-radius: 10px;
@@ -62,17 +74,47 @@ grid-row: 2/3;
 
 form input,label{
   height: 3vh;
-  width: 10vw;
+  width: 12vw;
+
  
 }
 
-form button{
+ form button{
   width: 5vw;
   height: 3vh;
-
+  background-color: rgb(144, 56, 251);
+  border: none;
+  box-shadow: 0 9px  rgb(88, 33, 154);
+  margin-top: 2vh;
+  font-weight: bold;
+  color: rgb(42, 42, 42);
 }
 
-Footer h1,h2{
+ button:hover, .background .register:hover{
+ cursor: pointer;
+ color: rgb(238, 238, 238);
+}
+
+.background .register:active, button:active{
+  
+  transform: translateY(4px);
+  box-shadow: 0 5px  rgb(88, 33, 154);
+  color: rgb(238, 238, 238);
+}
+
+
+.background .register{
+  width: 10vw;
+  height: 5vh;
+  background-color: rgb(144, 56, 251);
+  border: none;
+  box-shadow: 0 9px  rgb(88, 33, 154);
+  margin-top: 2vh;
+  font-weight: bold;
+  color: rgb(42, 42, 42);
+}
+
+Footer h1,h2,#Navbar h1{
   background-color: rgb(42, 42, 42);
   width: 100vw;
  justify-content: center;
@@ -82,3 +124,40 @@ Footer h1,h2{
 }
 
 
+
+#RegisterPage{
+  display: grid;
+  height: 70vh;
+  width: 80vw;
+  
+  
+   grid-template-columns: 1fr 1fr;
+   grid-template-rows: 1fr, 1fr;
+   justify-items: center;
+   align-items: center;
+}
+
+#RegisterPage form{
+  display: flex;
+  flex-direction: column;
+  width: 10vw;
+  gap: 5vh;
+ 
+
+  border-radius: 10px;
+grid-column: 1/2;
+grid-row: 2/3;
+}
+
+#RegisterPage .background{
+  height: 60vh;
+  width: 20vw;
+  background-color: rgb(42, 42, 42);
+ display: flex;
+ flex-direction: column;
+ gap: 5vh;
+ padding: 5vh;
+ box-sizing: border-box;
+ transition: transform .2s;
+ 
+}
