@@ -26,7 +26,7 @@ function RegisterPage(){
 
             <label htmlFor="">Confirm Password <input type="password" /></label>
             
-            <button type="submit">ok lets do it!</button>
+            <button type="submit">today is the day!</button>
         </form>
         <button className="register" onClick={toLogin}>Go to Login!</button>
         </div>
