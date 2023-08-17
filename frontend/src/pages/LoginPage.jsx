@@ -33,7 +33,7 @@ function LoginPage(){
             
             <button type="submit">Login</button>
         </form>
-        <button className="register" onClick={toRegister}>Register!</button>
+        <button className="register" onClick={toRegister}>Register</button>
         </div>
  
 

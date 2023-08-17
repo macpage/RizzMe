@@ -28,7 +28,7 @@ function RegisterPage(){
             
             <button type="submit">Create Account</button>
         </form>
-        <button className="register" onClick={toLogin}>Go to Login!</button>
+        <button className="register" onClick={toLogin}>Go to Login</button>
         </div>
     </div>
 }
