@@ -27,9 +27,9 @@ function LoginPage(){
                     <div className="background">
            <h1><span className="highlight2">Log</span>in</h1> 
             <form onSubmit={handleSubmit}>
-            <label htmlFor="">Username <input type="text" onChange={e => setUsername(e.target.value)}/></label>
+            <label htmlFor="">Username <input type="text" required onChange={e => setUsername(e.target.value)}/></label>
             
-            <label htmlFor="">Password <input type="password" onChange={e => setPassword(e.target.value)} /></label>
+            <label htmlFor="">Password <input type="password" required onChange={e => setPassword(e.target.value)} /></label>
             
             <button type="submit">Login</button>
         </form>

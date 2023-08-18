@@ -20,11 +20,11 @@ function RegisterPage(){
                     <div className="background">
            <h1><span className="highlight2">Re</span>gister</h1> 
             <form onSubmit={handeSubmit}>
-            <label htmlFor="">Username <input type="text" onChange={e => setUsername(e.target.value)} /></label>
+            <label htmlFor="">Username <input required type="text" onChange={e => setUsername(e.target.value)} /></label>
             
-            <label htmlFor="">Password <input type="password" onChange={e => setPassword(e.target.value)}/></label>
+            <label htmlFor="">Password <input required type="password" onChange={e => setPassword(e.target.value)}/></label>
 
-            <label htmlFor="">Confirm Password <input type="password" /></label>
+            <label htmlFor="">Confirm Password <input  required type="password" /></label>
             
             <button type="submit">Create Account</button>
         </form>
