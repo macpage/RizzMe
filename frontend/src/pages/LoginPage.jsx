@@ -10,7 +10,7 @@ function LoginPage(){
         e.preventDefault();
         axios.post("http://localhost:3004/login",{username,password}).then(result=> {console.log(result)
         if(result.data === "login!!!"){
-            navigate("/RegisterPage");
+            navigate("/SwipePage");
         }
     })
      
