@@ -6,8 +6,9 @@ import axios from "axios";
 function RegisterPage(){
     const [username,setUsername] = useState();
     const [password,setPassword] = useState();
+    const [filename,setFilename] = useState("penis");
     const handeSubmit = (e)=>{
-        axios.post("http://localhost:3004/register", {username,password}).then(result=>console.log(result))
+        axios.post("http://localhost:3004/register", {username,password,filename}).then(result=>console.log(result))
     }
     const navigate = useNavigate();
     const toLogin=()=>{

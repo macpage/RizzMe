@@ -81,6 +81,21 @@ width: 80vw;
  }
 }
 
+@keyframes close {
+  100%{
+   transform: scale(0);
+   filter: opacity(0);
+  }
+  50%{
+   transform: scale(1.1);
+   filter: opacity(0.8);
+  }
+  0%{
+   transform: scale(1);
+   filter: opacity(1);
+  }
+ }
+
 #LoginPage .background{
  height: 50vh;
  width: 20vw;
@@ -135,7 +150,7 @@ form input,label{
  color: rgb(238, 238, 238);
 }
 
-#Navbar button:hover, #SwipeButtons button:hover{
+#Navbar button:hover, #SwipeButtons button:hover,.rizzText button:hover{
   transform: scale(1.2);
 }
 
@@ -298,19 +313,126 @@ grid-row: 2/3;
   height: 70vh;
   padding: 2vh;
   box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  row-gap: 2vh;
+
 }
 
 #SwipeInfo img{
   background-color: #2a2a2a;
-  width: 13vh;
-  height: 13vh;
+  width: 10vh;
+  height: 10vh;
   object-fit: cover;
 }
 
 #SwipeInfo .pics{
   display: grid;
-  grid-template-columns:  1fr 1fr 1fr;
+  grid-template-columns:  repeat(3,auto);
   grid-template-rows: 1fr 1fr;
+
+  justify-content: space-between;
+  row-gap: 1vh;
+ 
+}
+
+.info{
+  display: flex;
+
+  gap: 10vh;
+
+}
+
+ul{
+  list-style-type: none;
+
+}
+li{
+  margin: 0.3vh 0;
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  padding: 0.5vh;
+}
+.rizzText{
+
+  display: none;
   gap: 1vh;
-  justify-items: center;
+  
+}
+
+.rizzText textarea{
+height: 20vh;
+width: 100%;
+background-color: #2a2a2a;
+color: aliceblue;
+padding: 1vh;
+outline: none ;
+resize: none;
+animation: spawn 0.5s;
+}
+
+.closing{
+  animation: close 0.5s;
+}
+
+.rizzText button{
+  width: 5vh;
+  height: 5vh;
+  border-radius: 100%;
+  border: none;
+  background-color:   #2a2a2a;
+  color: aliceblue;
+
+ 
+  transition: transform 0.2s;
+}
+
+.rizzButtons{
+ 
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 1vh;
+}
+
+
+#AccountPage{
+  display: flex;
+}
+
+#AccountIntro{
+  height: 70vh;
+  width: 50vh;
+  background-color: #2a2a2a;
+  display: flex;
+    flex-direction: column;
+  align-items: center;
+  padding: 2vh;
+  box-sizing: border-box;
+}
+
+#AccountIntro img{
+  width: 40vh;
+  height: 40vh;
+}
+
+#AccountInfo{
+  height: 70vh;
+  width: 50vh;
+  background-color: #9038fb;
+  padding: 2vh;
+  box-sizing: border-box;
+}
+
+#AccountInfo .pics{
+ display: grid;
+ grid-template-columns: repeat(3,auto);
+ justify-content: space-around;
+ row-gap: 2vh;
+}
+
+#AccountInfo img{
+  height: 12vh;
+  width: 12vh;
+  background-color: #2a2a2a;
 }
