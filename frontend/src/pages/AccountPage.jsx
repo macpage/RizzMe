@@ -24,6 +24,10 @@ showImage();
 
     }
 
+    function loadImages(){
+       
+    }
+
     function showImage(){
         axios.get("http://localhost:3004/getImage").then(res=>{console.log(res);setImg(res.data[res.data.length-1].image)}).catch(err => console.log(err)) 
     }
