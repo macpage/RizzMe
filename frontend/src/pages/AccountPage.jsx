@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 function AccountPage(prop){
     const [img,setImg] = useState(null);
    const [name,setName] = useState("plss");
+ 
     
     console.log("yooo"+prop.username);
     function handleImage(){
@@ -24,9 +24,9 @@ showImage();
 
     }
 
-    function loadImages(){
-       
-    }
+    
+
+   
 
     function showImage(){
         axios.get("http://localhost:3004/getImage").then(res=>{console.log(res);setImg(res.data[res.data.length-1].image)}).catch(err => console.log(err)) 
