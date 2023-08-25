@@ -1,16 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 function AccountPage(prop){
-    const [img,setImg] = useState(null);
+    const [img,setImg] = useState([]);
+    img[0] = "gir.jpeg";
+    
    const [name,setName] = useState("plss");
  
-    
+   loadImage();
     console.log("yooo"+prop.username);
-    function handleImage(){
+    function handleImage(i){
+        
        async function uploadImage(){
+        console.log("hellooo  "+ i)
 const formData = new FormData();
 formData.append("file",img);
 formData.append("name",prop.username);
+formData.append("index",i);
 console.log(formData);
 await axios.post("http://localhost:3004/upload",formData, {
     headers: {
@@ -26,13 +31,19 @@ showImage();
 
     
     function showImage(){
-        axios.get("http://localhost:3004/getImage").then(res=>{console.log(res);setImg(res.data[res.data.length-1].image)}).catch(err => console.log(err)) 
+        axios.get("http://localhost:3004/getImage").then(res=>{console.log(res.data[res.data.length-1].image);setImg(res.data[res.data.length-1].image)}).catch(err => console.log(err)) 
+    }
+
+    function loadImage(){
+        console.log("lets gooo")
+        
+      
     }
     return <div id="AccountPage">
         <div id="AccountIntro">
             <img src={"http://localhost:3004/images/"+img} alt="" />
             <input type="file" name="img" onChange={e=>setImg(e.target.files[0])} />
-            <button type="submit" onClick={handleImage}>Upload</button>
+            <button type="submit" onClick={()=>handleImage(2)}>Upload</button>
             <h1>{prop.username}</h1>
             <p>lol</p>
         </div>

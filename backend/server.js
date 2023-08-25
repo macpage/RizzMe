@@ -64,9 +64,11 @@ const upload = multer({
 app.post('/upload', upload.single('file'), (req, res) => {
   console.log(req.file);
   console.log(req.body.name);
+  console.log(req.body.index);
   ImageModel.create({
     image: req.file.filename,
     username: req.body.name,
+    index: req.body.index,
   })
     .then((result) => res.json(result))
     .catch((err) => console.log(err));
