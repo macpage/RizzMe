@@ -4,13 +4,14 @@ function AccountPage(prop){
     const [img,setImg] = useState();
     const [pic,setPic] = useState([]);
     const [bro,setBro] = useState(null);
-   
+   const [counter,setCounter] = useState(0);
     console.log("broo: " +img);
    const [name,setName] = useState("plss");
  
   
     console.log("yooo"+prop.username);
-
+    console.log(pic);
+    console.log(pic[0]);
     loadImage();
     function handleImage(i,e){
         
@@ -34,7 +35,7 @@ await axios.post("http://localhost:3004/upload",formData, {
   }).then(res=>console.log(res)).catch(err=>console.log(err,img));
 console.log("imggg");
 
-showImage(i);
+showImage(i,loadAgain);
 
         }
 deleteImage(i,uploadImage);
@@ -46,30 +47,42 @@ deleteImage(i,uploadImage);
         await  axios.get("http://localhost:3004/getImage").then(res=>{lol=res.data});
        
         lol.forEach(e => {
-          if(e.index == 2){
+          if(e.index == counter && e.username == prop.username){
           
-            if(!pic[0]){
-              setPic(arr=> [...arr.slice(0,0),e.image]);  
+            if(!pic[counter]){
+              setPic(arr=> [...arr.slice(0,counter),e.image]);  
+            setCounter(counter+1);
+            console.log("sajdklfjödsjlfjkösdk");
             }
-           console.log(pic[0]);
+           console.log(counter);
            //
             console.log(e);
             
 
           }else{
-              console.log("didnt work: " + e.username);
+             // console.log("didnt work: " + e.username);
           }
         });
              console.log("time to show");
     }
     
-  async  function showImage(){
+  async  function showImage(i,cb){
  
        //axios.delete("http://localhost:3004/getImage/").then(response => {
       //  console.log(response)}).catch(err=> console.log(err));
-       axios.get("http://localhost:3004/getImage").then(res=>{console.log(res.data[res.data.length-1].image),setPic(arr=> [...arr.slice(0,0),res.data[res.data.length-1].image])}).catch(err => console.log(err)) 
-        console.log("your " +pic);
+     if(await axios.get("http://localhost:3004/getImage").then(res=>{console.log("new: " + res.data[res.data.length-1].image ),setPic(arr=> [...arr.slice(0,i),res.data[res.data.length-1].image,...arr.slice(i+1)])}).then(console.log("new array:")).catch(err => console.log(err)) ) {
+                console.log("your " +pic.length);
+  
+        console.log(pic[0]);
         console.log("sdafnllksadf");
+     }
+
+      cb();
+    }
+
+    function loadAgain(){
+
+     console.log("updated imgs: " + pic[0]);   
     }
 
 async function deleteImage(i,callback){
@@ -82,19 +95,19 @@ async function deleteImage(i,callback){
         <div id="AccountIntro">
             
            
-            <button> <input type="file" name="img" onChange={e=>handleImage(2,e)}/><img src={"http://localhost:3004/images/"+pic[0]} alt=""/> </button>
+            <button> <input type="file" name="img" onChange={e=>handleImage(0,e)}/><img src={"http://localhost:3004/images/"+pic[0]} alt=""/> </button>
             <button type="submit" >Upload</button>
             <h1>{prop.username}</h1>
             <p>lol</p>
         </div>
         <div id="AccountInfo">
             <div className="pics">
-                <img src={"http://localhost:3004/images/"+pic[0]} alt="" />
-                <img src={"http://localhost:3004/images/"+pic[1]}  alt="" />
-                <img src={"http://localhost:3004/images/"+pic[2]}  alt="" />
-                <img src={"http://localhost:3004/images/"+pic[3]}  alt="" />
-                <img src={"http://localhost:3004/images/"+pic[4]}  alt="" />
-                <img src={"http://localhost:3004/images/"+pic[5]}  alt="" />
+            <button> <input type="file" name="img" onChange={e=>handleImage(0,e)}/><img src={"http://localhost:3004/images/"+pic[0]} alt=""/> </button>
+            <button> <input type="file" name="img" onChange={e=>handleImage(1,e)}/><img src={"http://localhost:3004/images/"+pic[1]} alt=""/> </button>
+            <button> <input type="file" name="img" onChange={e=>handleImage(2,e)}/><img src={"http://localhost:3004/images/"+pic[2]} alt=""/> </button>
+            <button> <input type="file" name="img" onChange={e=>handleImage(3,e)}/><img src={"http://localhost:3004/images/"+pic[3]} alt=""/> </button>
+            <button> <input type="file" name="img" onChange={e=>handleImage(4,e)}/><img src={"http://localhost:3004/images/"+pic[4]} alt=""/> </button>
+            <button> <input type="file" name="img" onChange={e=>handleImage(5,e)}/><img src={"http://localhost:3004/images/"+pic[5]} alt=""/> </button>
             </div>
         </div>
     </div>

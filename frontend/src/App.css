@@ -442,3 +442,9 @@ animation: spawn 0.5s;
   width: 12vh;
   background-color: #2a2a2a;
 }
+
+#AccountInfo input{
+  height: 12vh;
+  width: 12vh;
+  position: absolute;
+}
