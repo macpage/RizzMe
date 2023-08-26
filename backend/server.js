@@ -83,3 +83,10 @@ app.get('/getImage', (req, res) => {
 app.listen(3004, () => {
   console.log('server läuft');
 });
+app.get('/deleteImage', (req, res) => {
+  console.log(req.query);
+  console.log(req.query.name);
+  ImageModel.deleteMany({ index: req.query.index, username: req.query.name })
+    .then((images) => res.json(images))
+    .catch((err) => res.json(err));
+});

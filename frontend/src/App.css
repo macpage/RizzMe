@@ -416,6 +416,12 @@ animation: spawn 0.5s;
   height: 40vh;
 }
 
+#AccountIntro input{
+  height: 40vh;
+  width: 40vh;
+  position: absolute;
+}
+
 #AccountInfo{
   height: 70vh;
   width: 50vh;
