@@ -109,6 +109,30 @@ async function deleteImage(i,callback){
             <button> <input type="file" name="img" onChange={e=>handleImage(4,e)}/><img src={"http://localhost:3004/images/"+pic[4]} alt=""/> </button>
             <button> <input type="file" name="img" onChange={e=>handleImage(5,e)}/><img src={"http://localhost:3004/images/"+pic[5]} alt=""/> </button>
             </div>
+            <div className="info">
+            <div className="personal">
+                <ul>
+                    <li>168cm 🦴</li>
+                    <li>Girl  👩🏻 </li>
+                    <li>25 y.o.📆</li>
+                    <li>thicc 🍑</li>
+                </ul>
+            </div>
+            <div className="interest">
+            <ul>
+                    <li>Anime 📺</li>
+                    <li>Food 🍜</li>
+                    <li>Pets 🐈</li>
+                    <li>Work 👩🏻‍💻</li>
+                </ul>
+            </div>
+            <div className="searchingFor">
+            <ul>
+                    <li>Searching for:</li>
+                    <li>Fun 👀💦 </li>
+                </ul>
+            </div>
+        </div>
         </div>
     </div>
 }
