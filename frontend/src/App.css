@@ -448,3 +448,10 @@ animation: spawn 0.5s;
   width: 12vh;
   position: absolute;
 }
+
+#AccountInfo li input{
+  all: unset;
+  height: 2vh;
+  width: 5vh;
+ 
+}

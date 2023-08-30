@@ -7,6 +7,7 @@ function AccountPage(prop){
    const [counter,setCounter] = useState(0);
     console.log("broo: " +img);
    const [name,setName] = useState("plss");
+   const [tags,setTags] = useState({"height": null,"gender": null,"age": null});
  
   
     console.log("yooo"+prop.username);
@@ -112,15 +113,26 @@ async function deleteImage(i,callback){
             <div className="info">
             <div className="personal">
                 <ul>
-                    <li>168cm 🦴</li>
-                    <li>Girl  👩🏻 </li>
-                    <li>25 y.o.📆</li>
-                    <li>thicc 🍑</li>
+                    <li><input type="text" placeholder="height" value={tags.height}  /></li>
+                    <li><input type="text" placeholder="gender" value={tags.gender}  /></li>
+                    <li><input type="text" placeholder="age" value={tags.age}  /></li>
+                    <li><select name="body" id="body">
+                        <option value="thicc">thicc 🍑</option>
+                        <option value="flat">flat 🦴</option>
+                        <option value="fat">fat 🐷</option>
+                        <option value="skinny">skinny 🎋</option>
+                        <option value="muscular">muscular 🦍</option>
+                        </select></li>
                 </ul>
             </div>
             <div className="interest">
             <ul>
-                    <li>Anime 📺</li>
+                    <li><select name="watchList" id="watchList">
+                        <option value="anime">Anime 🥷</option>
+                        <option value="action">action 💥</option>
+                        <option value="comedy">comedy 🎭</option>
+                        <option value="porn">porn 🔞</option>
+                        </select></li>
                     <li>Food 🍜</li>
                     <li>Pets 🐈</li>
                     <li>Work 👩🏻‍💻</li>
