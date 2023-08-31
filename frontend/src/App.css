@@ -455,3 +455,47 @@ animation: spawn 0.5s;
   width: 5vh;
  
 }
+
+#AccountInfo li button{
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 18px;
+}
+
+#TagWindow{
+  height: 30vh;
+  width: 40vh;
+  background-color: #2a2a2a;
+  position: absolute;
+  padding: 1vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  justify-content: center;
+}
+
+.tags{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1vh;
+  text-align: center;
+}
+
+.tags p, .tags button{
+  all: unset;
+  border: 1px white solid;
+  border-radius: 5px;
+}
+
+#TagWindow h1{
+  font-size: 20px;
+}
+
+.tags p:hover ,.tags button:hover{
+  cursor: pointer;
+  background-color: aliceblue;
+  color: #2a2a2a;
+  
+}

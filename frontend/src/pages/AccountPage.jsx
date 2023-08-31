@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import TagWindow from "../components/TagWindow";
 function AccountPage(prop){
     const [img,setImg] = useState();
     const [pic,setPic] = useState([]);
@@ -8,7 +9,8 @@ function AccountPage(prop){
     console.log("broo: " +img);
    const [name,setName] = useState("plss");
    const [tags,setTags] = useState({"height": null,"gender": null,"age": null});
- 
+
+   const [tagButton,setTagButton] = useState();
   
     console.log("yooo"+prop.username);
     console.log(pic);
@@ -113,29 +115,17 @@ async function deleteImage(i,callback){
             <div className="info">
             <div className="personal">
                 <ul>
-                    <li><input type="text" placeholder="height" value={tags.height}  /></li>
+                    <li><input type="text" placeholder="height"  value={tags.height}  />cm</li>
                     <li><input type="text" placeholder="gender" value={tags.gender}  /></li>
-                    <li><input type="text" placeholder="age" value={tags.age}  /></li>
-                    <li><select name="body" id="body">
-                        <option value="thicc">thicc 🍑</option>
-                        <option value="flat">flat 🦴</option>
-                        <option value="fat">fat 🐷</option>
-                        <option value="skinny">skinny 🎋</option>
-                        <option value="muscular">muscular 🦍</option>
-                        </select></li>
+                    <li><input type="text" placeholder="age" value={tags.age}  />Years</li>
+              
                 </ul>
             </div>
             <div className="interest">
             <ul>
-                    <li><select name="watchList" id="watchList">
-                        <option value="anime">Anime 🥷</option>
-                        <option value="action">action 💥</option>
-                        <option value="comedy">comedy 🎭</option>
-                        <option value="porn">porn 🔞</option>
-                        </select></li>
-                    <li>Food 🍜</li>
-                    <li>Pets 🐈</li>
-                    <li>Work 👩🏻‍💻</li>
+                    <li><button className="tagButton" onClick={e=>setTagButton(e.target.value)} value={"crazy"}>lol</button></li>
+                    <li><button className="tagButton" onClick={e=>setTagButton(e.target.value)} value={"baby"}>lol</button></li>
+                    <li><button className="tagButton" onClick={e=>setTagButton(e.target.value)} value={"sexy"}>lol</button></li>
                 </ul>
             </div>
             <div className="searchingFor">
@@ -145,6 +135,7 @@ async function deleteImage(i,callback){
                 </ul>
             </div>
         </div>
+        <TagWindow bro={tagButton}></TagWindow>
         </div>
     </div>
 }
