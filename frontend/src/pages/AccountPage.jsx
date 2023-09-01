@@ -116,9 +116,12 @@ async function deleteImage(i,callback){
             <div className="personal">
                 <ul>
                     <li><input type="text" placeholder="height"  value={tags.height}  />cm</li>
-                    <li><input type="text" placeholder="gender" value={tags.gender}  /></li>
+                    <li><select name="gender" id="gender" placeholder="gender">
+                        <option value={tags.gender}>man</option>
+                        <option value={tags.gender}>woman</option>
+                       
+                        </select></li>
                     <li><input type="text" placeholder="age" value={tags.age}  />Years</li>
-              
                 </ul>
             </div>
             <div className="interest">

@@ -499,3 +499,15 @@ animation: spawn 0.5s;
   color: #2a2a2a;
   
 }
+
+.personal select{
+  background-color: #2a2a2a;
+  border: none;
+  color: aliceblue;
+  outline: none;
+  font-size: 16px;
+}
+
+.personal select:hover{
+cursor: pointer;
+}
