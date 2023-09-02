@@ -9,7 +9,8 @@ function AccountPage(prop){
    const [counter,setCounter] = useState(0);
     console.log("broo: " +img);
    const [name,setName] = useState("plss");
-   const [tags,setTags] = useState({"height": null,"gender": null,"age": null});
+   const [tags,setTags] = useState({"height": null,"gender": "man","age": null, "tag_1": null, "tag_2": null, "tag_3": null, "searchTag": null});
+   
 
    const [tagButton,setTagButton] = useState();
   
@@ -125,19 +126,44 @@ function showSearchWindow(e){
     console.log("sdfhjksd")
 }
 
-function saveInfo(){
+function editProfile(){
+    const b = document.querySelector("#EditButton");
+    
+    if(b.innerHTML == "Save Profile"){
+        b.innerHTML = "Edit Profile";
+    }else{
+      b.innerHTML = "Save Profile";  
+    }
+    console.log(tags);
+}
+
+function updateTags(e,b){
+   
+    if(b == "tag_1"){
+        tags.tag_1 = e;
+    }
+    if(b == "tag_2"){
+        tags.tag_2 = e;
+    }
+    if(b == "tag_3"){
+        tags.tag_3 = e;
+    }
     
 }
 
+
+function updateSearchTag(e){
+tags.searchTag = e;
+}
 
     return <div id="AccountPage">
         <div id="AccountIntro">
             
            
-            <button> <input type="file" name="img" onChange={e=>handleImage(0,e)}/><img src={"http://localhost:3004/images/"+pic[0]} alt=""/> </button>
+            <button id="ProfileButton"> <input type="file" name="img" onChange={e=>handleImage(0,e)}/><img src={"http://localhost:3004/images/"+pic[0]} alt=""/> </button>
         
             <h1>{prop.username}</h1>
-            <p>lol</p>
+            <button id="EditButton" onClick={editProfile}>Edit Profile</button>
         </div>
         <div id="AccountInfo">
             <div className="pics">
@@ -151,31 +177,31 @@ function saveInfo(){
             <div className="info">
             <div className="personal">
                 <ul>
-                    <li>cm<input type="text" placeholder="height"  value={tags.height}  /></li>
-                    <li><select name="gender" id="gender" placeholder="gender">
-                        <option value={tags.gender}>man</option>
-                        <option value={tags.gender}>woman</option>
+                    <li>cm<input type="text" placeholder="height" onChange={e=> tags.height = e.target.value}  /></li>
+                    <li><select name="gender" id="gender" placeholder="gender" onChange={e=> tags.gender = e.target.value}>
+                        <option value={"man"}>man</option>
+                        <option value={"woman"}>woman</option>
                        
                         </select></li>
-                    <li>Years<input type="text" placeholder="age" value={tags.age}  /></li>
+                    <li>Years<input type="text" placeholder="age" onChange={e=> tags.age = e.target.value}  /></li>
                 </ul>
             </div>
             <div className="interest">
             <ul>
-                    <button className="tagButton" onClick={e=> showTagWindow(e.target.value)} value={"crazy"}>click me</button>
-                    <button className="tagButton" onClick={e=>showTagWindow(e.target.value)} value={"baby"}>click me</button>
-                    <button className="tagButton" onClick={e=>showTagWindow(e.target.value)} value={"sexy"}>click me</button>
+                    <button className="tagButton" onClick={e=> showTagWindow(e.target.value)} onChange={e=> tags.tag_1 = e.target.value} value={"tag_1"}>click me</button>
+                    <button className="tagButton" onClick={e=>showTagWindow(e.target.value)} onChange={e=> tags.tag_2 = e.target.value} value={"tag_2"}>click me</button>
+                    <button className="tagButton" onClick={e=>showTagWindow(e.target.value)} onChange={e=> tags.tag_3 = e.target.value} value={"tag_3"}>click me</button>
                 </ul>
             </div>
             <div className="searchingFor">
             <ul>
                     <li>Searching for:</li>
-                    <button id="searchTag" onClick={e=>showSearchWindow(e.target.value)} value={"lo"}>click me</button>
+                    <button id="searchTag" onClick={e=>showSearchWindow(e.target.value)} onChange={e => tags.searchTag = e.target.value} value={"lo"}>click me</button>
                 </ul>
             </div>
         </div>
-        <TagWindow bro={tagButton}></TagWindow>
-        <SearchInfo></SearchInfo>
+        <TagWindow bro={tagButton} update={updateTags}></TagWindow>
+        <SearchInfo update={updateSearchTag}></SearchInfo>
         </div>
     </div>
 }

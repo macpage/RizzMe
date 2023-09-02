@@ -1,10 +1,11 @@
-function SearchInfo(){
+function SearchInfo(props){
 
     function hideSearchWindow(e){
         const search = document.querySelector("#searchTag");
         search.innerHTML = e;
         const searchInfo = document.querySelector("#SearchInfo");
         searchInfo.style.display = "none";
+        props.update(e);
     }
     return <div id="SearchInfo">
         <div className="tags">

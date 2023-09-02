@@ -16,6 +16,9 @@ function TagWindow(props){
                 console.log("herrrre" + e);
                
                 b.innerHTML = e;
+               
+               console.log("booob" + b.value);
+               props.update(e,props.bro);
             }
            
         });
@@ -23,6 +26,7 @@ function TagWindow(props){
         
         
         console.log(props.bro);
+        
 
 
     }

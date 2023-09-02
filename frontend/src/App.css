@@ -422,6 +422,7 @@ animation: spawn 0.5s;
   position: absolute;
 }
 
+
 #AccountInfo{
   height: 70vh;
   width: 50vh;
@@ -470,11 +471,24 @@ cursor: pointer;
   }
   
 
-#AccountIntro button{
+#ProfileButton{
 
   all: unset;
   color: transparent;
 }
+
+#EditButton {
+  all: unset;
+  background-color: #e0e0e0;
+  color: #2a2a2a;
+  border-radius: 10px;
+  padding: 1vh;
+  font-weight: 500;
+}
+#EditButton:hover{
+  cursor: pointer;
+}
+
 
 #AccountInfo input{
   height: 12vh;
