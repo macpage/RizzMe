@@ -431,6 +431,7 @@ animation: spawn 0.5s;
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 #AccountInfo .pics{
@@ -499,7 +500,25 @@ cursor: pointer;
 cursor: pointer;
 }
 
+.interest ul{
+  display: flex;
+  flex-direction: column;
+ height: 100%;
+ justify-content: space-evenly;
+}
 
+.tagButton{
+ height: 3vh;
+ background-color: #2a2a2a;
+ color: #e0e0e0;
+ border: none;
+ border-radius: 10px;
+ font-size: 16px;
+ padding: 1vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
 
 #TagWindow{
   height: 25vh;
@@ -534,7 +553,7 @@ cursor: pointer;
 
 .tags p:hover ,.tags button:hover{
   cursor: pointer;
-  background-color: aliceblue;
+  background-color: rgb(224, 224, 224);
   color: #2a2a2a;
   
 }
@@ -560,4 +579,34 @@ cursor: pointer;
 .info{
   display: flex;
   
+}
+
+#SearchInfo{
+  height: 10vh;
+  width: 45vh;
+  background-color: #2a2a2a;
+  
+  padding: 1vh;
+  box-sizing: border-box;
+ 
+  flex-direction: column;
+  gap: 1vh;
+  justify-content: center;
+  display: none;
+  
+}
+
+#SearchInfo .tags{
+  height: 4vh;
+  font-weight: 500;
+}
+
+#searchTag{
+  height: 3vh;
+  width: 100%;
+  background-color: #2a2a2a;
+  border: none;
+  border-radius: 10px;
+  color: #e0e0e0;
+  font-size: 16px;
 }

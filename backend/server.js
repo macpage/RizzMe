@@ -7,6 +7,7 @@ const userModel = require('./model/user');
 const ImageModel = require('./model/image');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 
 app.use(cors());
 app.use(express.json());
@@ -84,8 +85,22 @@ app.listen(3004, () => {
   console.log('server läuft');
 });
 app.get('/deleteImage', (req, res) => {
+  console.log(req);
   console.log(req.query);
   console.log(req.query.name);
+  console.log(req.query.pic);
+  if (req.query.pic) {
+    fs.unlink(
+      '/Users/mac/repos/RizzMe/backend/public/images' + '/' + req.query.pic,
+      (err) => {
+        if (err) {
+          throw err;
+        }
+
+        console.log('Delete File successfully.');
+      }
+    );
+  }
   ImageModel.deleteMany({ index: req.query.index, username: req.query.name })
     .then((images) => res.json(images))
     .catch((err) => res.json(err));

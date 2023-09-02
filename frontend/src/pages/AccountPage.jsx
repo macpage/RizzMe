@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import TagWindow from "../components/TagWindow";
+import SearchInfo from "../components/SearchInfo";
 function AccountPage(prop){
     const [img,setImg] = useState();
     const [pic,setPic] = useState([]);
@@ -89,20 +90,44 @@ deleteImage(i,uploadImage);
     }
 
 async function deleteImage(i,callback){
-    console.log("time to delete");
-   await axios.get("http://localhost:3004/deleteImage",{params:{name: prop.username, index:i}}).then(res=>console.log(res));
+    console.log("time to delete: " + pic);
+    let toDelete = pic[i];
+    delete pic[i];
+    console.log("time to delete: " + pic[i]);
+  
+          await axios.get("http://localhost:3004/deleteImage",{params:{name: prop.username, index:i,pic: toDelete}}).then(res=>console.log(res));
    console.log(" deleted");
    callback();
+    
+    //await axios.get("http://localhost:3004/deletePic",{params:{pic: pic[i]}});
+ 
 }
 
 
 function showTagWindow(e){
 const tw = document.querySelector("#TagWindow");
-tw.style.display = "block";
+
+if(tw.style.display =="block"){
+    tw.style.display = "none";
+}else{
+    tw.style.display = "block";
+}
 setTagButton(e);
 }
 
+function showSearchWindow(e){
+    const search = document.querySelector("#SearchInfo");
+    if(search.style.display =="flex"){
+        search.style.display = "none";
+    }else{
+        search.style.display = "flex";
+    }
+    console.log("sdfhjksd")
+}
 
+function saveInfo(){
+    
+}
 
 
     return <div id="AccountPage">
@@ -137,19 +162,20 @@ setTagButton(e);
             </div>
             <div className="interest">
             <ul>
-                    <li><button className="tagButton" onClick={e=> showTagWindow(e.target.value)} value={"crazy"}>lol</button></li>
-                    <li><button className="tagButton" onClick={e=>showTagWindow(e.target.value)} value={"baby"}>lol</button></li>
-                    <li><button className="tagButton" onClick={e=>showTagWindow(e.target.value)} value={"sexy"}>lol</button></li>
+                    <button className="tagButton" onClick={e=> showTagWindow(e.target.value)} value={"crazy"}>click me</button>
+                    <button className="tagButton" onClick={e=>showTagWindow(e.target.value)} value={"baby"}>click me</button>
+                    <button className="tagButton" onClick={e=>showTagWindow(e.target.value)} value={"sexy"}>click me</button>
                 </ul>
             </div>
             <div className="searchingFor">
             <ul>
                     <li>Searching for:</li>
-                    <li>Fun 👀💦 </li>
+                    <button id="searchTag" onClick={e=>showSearchWindow(e.target.value)} value={"lo"}>click me</button>
                 </ul>
             </div>
         </div>
         <TagWindow bro={tagButton}></TagWindow>
+        <SearchInfo></SearchInfo>
         </div>
     </div>
 }
