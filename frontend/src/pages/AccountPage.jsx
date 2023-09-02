@@ -94,12 +94,23 @@ async function deleteImage(i,callback){
    console.log(" deleted");
    callback();
 }
+
+
+function showTagWindow(e){
+const tw = document.querySelector("#TagWindow");
+tw.style.display = "block";
+setTagButton(e);
+}
+
+
+
+
     return <div id="AccountPage">
         <div id="AccountIntro">
             
            
             <button> <input type="file" name="img" onChange={e=>handleImage(0,e)}/><img src={"http://localhost:3004/images/"+pic[0]} alt=""/> </button>
-            <button type="submit" >Upload</button>
+        
             <h1>{prop.username}</h1>
             <p>lol</p>
         </div>
@@ -115,20 +126,20 @@ async function deleteImage(i,callback){
             <div className="info">
             <div className="personal">
                 <ul>
-                    <li><input type="text" placeholder="height"  value={tags.height}  />cm</li>
+                    <li>cm<input type="text" placeholder="height"  value={tags.height}  /></li>
                     <li><select name="gender" id="gender" placeholder="gender">
                         <option value={tags.gender}>man</option>
                         <option value={tags.gender}>woman</option>
                        
                         </select></li>
-                    <li><input type="text" placeholder="age" value={tags.age}  />Years</li>
+                    <li>Years<input type="text" placeholder="age" value={tags.age}  /></li>
                 </ul>
             </div>
             <div className="interest">
             <ul>
-                    <li><button className="tagButton" onClick={e=>setTagButton(e.target.value)} value={"crazy"}>lol</button></li>
-                    <li><button className="tagButton" onClick={e=>setTagButton(e.target.value)} value={"baby"}>lol</button></li>
-                    <li><button className="tagButton" onClick={e=>setTagButton(e.target.value)} value={"sexy"}>lol</button></li>
+                    <li><button className="tagButton" onClick={e=> showTagWindow(e.target.value)} value={"crazy"}>lol</button></li>
+                    <li><button className="tagButton" onClick={e=>showTagWindow(e.target.value)} value={"baby"}>lol</button></li>
+                    <li><button className="tagButton" onClick={e=>showTagWindow(e.target.value)} value={"sexy"}>lol</button></li>
                 </ul>
             </div>
             <div className="searchingFor">

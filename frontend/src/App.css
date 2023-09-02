@@ -294,7 +294,7 @@ grid-row: 2/3;
 
 #SwipeInfo img:hover {
   cursor: pointer;
- filter: brightness(50%);
+ filter: brightness(70%);
 }
 
 .text{
@@ -321,8 +321,8 @@ grid-row: 2/3;
 
 #SwipeInfo img{
   background-color: #2a2a2a;
-  width: 10vh;
-  height: 10vh;
+  width: 12vh;
+  height: 12vh;
   object-fit: cover;
 }
 
@@ -338,9 +338,9 @@ grid-row: 2/3;
 
 .info{
   display: flex;
+width: 100%;
 
-  gap: 10vh;
-
+justify-content: space-between;
 }
 
 ul{
@@ -428,19 +428,51 @@ animation: spawn 0.5s;
   background-color: #9038fb;
   padding: 2vh;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #AccountInfo .pics{
  display: grid;
  grid-template-columns: repeat(3,auto);
- justify-content: space-around;
+ justify-content: space-between;
  row-gap: 2vh;
+ width: 100%;
 }
 
 #AccountInfo img{
   height: 12vh;
   width: 12vh;
   background-color: #2a2a2a;
+  object-fit: cover;
+}
+
+#AccountInfo .pics button:hover,#AccountIntro button:hover  {
+ 
+ filter: brightness(70%);
+}
+
+#AccountInfo .pics button{
+all: unset;
+color: transparent;
+}
+
+#AccountInfo button input::-webkit-file-upload-button,#AccountIntro button input::-webkit-file-upload-button  {
+
+visibility: hidden;
+
+}
+
+#AccountInfo button input:hover,#AccountIntro button input:hover  {
+cursor: pointer;
+  }
+  
+
+#AccountIntro button{
+
+  all: unset;
+  color: transparent;
 }
 
 #AccountInfo input{
@@ -463,17 +495,24 @@ animation: spawn 0.5s;
   font-size: 18px;
 }
 
+#AccountInfo li:hover{
+cursor: pointer;
+}
+
+
+
 #TagWindow{
-  height: 30vh;
-  width: 40vh;
+  height: 25vh;
+  width: 45vh;
   background-color: #2a2a2a;
-  position: absolute;
+  
   padding: 1vh;
   box-sizing: border-box;
-  display: flex;
+  display: none;
   flex-direction: column;
-  gap: 2vh;
+  gap: 1vh;
   justify-content: center;
+  
 }
 
 .tags{
@@ -506,8 +545,19 @@ animation: spawn 0.5s;
   color: aliceblue;
   outline: none;
   font-size: 16px;
+  width: 10vh;
+}
+
+.personal  li {
+display: flex;
+justify-content: space-between;
 }
 
 .personal select:hover{
 cursor: pointer;
+}
+
+.info{
+  display: flex;
+  
 }
