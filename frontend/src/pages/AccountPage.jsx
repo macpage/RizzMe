@@ -9,15 +9,21 @@ function AccountPage(prop){
    const [counter,setCounter] = useState(0);
     console.log("broo: " +img);
    const [name,setName] = useState("plss");
-   const [tags,setTags] = useState({"height": null,"gender": "man","age": null, "tag_1": null, "tag_2": null, "tag_3": null, "searchTag": null});
+   const [tags,setTags] = useState({"height": 0,"gender": "man","age": 0, "tag_1": "click me", "tag_2": "click me", "tag_3": "click me", "searchTag": "click me"});
    const [likes,setLikes] = useState();
+   
+   const [saveTag,setSaveTag] = useState({"height": tags.height,"gender": tags.gender,"age": tags.age, "tag_1": tags.tag_1,"tag_2": tags.tag_2,"tag_3": tags.tag_3,"searchTag": tags.searchTag});
 
    const [tagButton,setTagButton] = useState();
+   const [isDisabled,setIsDisabled] = useState();
+
+   const [editMode,setEditMode] = useState(false);
   
     console.log("yooo"+prop.username);
     console.log(pic);
     console.log(pic[0]);
     loadImage();
+   loadInfos();
     function handleImage(i,e){
         
         console.log("xdd " + e.target.files[0]);
@@ -34,7 +40,7 @@ formData.append("index",i);
 console.log(formData);
 
 await axios.post("http://localhost:3004/upload",formData, {
-    headers: {
+    headers: { 
       "Content-Type": "multipart/form-data",
     },
   }).then(res=>console.log(res)).catch(err=>console.log(err,img));
@@ -46,8 +52,8 @@ showImage(i,loadAgain);
 deleteImage(i,uploadImage);
 
     }
-
     async function loadImage(){
+
         let lol;
         await  axios.get("http://localhost:3004/getImage").then(res=>{lol=res.data});
        
@@ -128,12 +134,26 @@ function showSearchWindow(e){
 
 function editProfile(){
     const b = document.querySelector("#EditButton");
-    
+    const height = document.querySelector("#height");
+    const gender = document.querySelector("#gender");
+    const age = document.querySelector("#age");
+
     if(b.innerHTML == "Save Profile"){
         b.innerHTML = "Edit Profile";
         updateInfo();
+        height.readOnly = true;
+        gender.disabled = true;
+        age.readOnly = true;
+        setIsDisabled(true);
+        setEditMode(false);
     }else{
       b.innerHTML = "Save Profile";  
+      
+      height.readOnly = false;
+      gender.disabled = false;
+      age.readOnly = false;
+      setIsDisabled(false);
+      setEditMode(true);
     }
     console.log(tags);
 }
@@ -141,25 +161,61 @@ function editProfile(){
 function updateTags(e,b){
    
     if(b == "tag_1"){
-        tags.tag_1 = e;
+        saveTag.tag_1 = e;
     }
     if(b == "tag_2"){
-        tags.tag_2 = e;
+        saveTag.tag_2 = e;
     }
     if(b == "tag_3"){
-        tags.tag_3 = e;
+        saveTag.tag_3 = e;
     }
     
 }
 
 
 function updateSearchTag(e){
-tags.searchTag = e;
+    saveTag.searchTag = e;
 }
 
 function updateInfo(){
-    axios.get("http://localhost:3004/updateInfo", {params:{name: prop.username,height:tags.height,gender:tags.gender,age:tags.age,tag_1:tags.tag_1,tag_2:tags.tag_2,tag_3:tags.tag_3,searchTag: tags.searchTag}})
+    axios.get("http://localhost:3004/updateInfo", {params:{name: prop.username,height:saveTag.height,gender:saveTag.gender,age:saveTag.age,tag_1:saveTag.tag_1,tag_2:saveTag.tag_2,tag_3:saveTag.tag_3,searchTag: saveTag.searchTag}})
 console.log("updated");
+}
+
+async function loadInfos(){
+  await axios.get("http://localhost:3004/updateInfo", {params:{name:prop.username}}).then(res=>(tags.height= res.data.height,tags.gender= res.data.gender,tags.age= res.data.age, tags.tag_1= res.data.tag_1, tags.tag_2= res.data.tag_2, tags.tag_3= res.data.tag_3, tags.searchTag= res.data.searchTag));
+console.log(tags.height);
+const height = document.querySelector("#height");
+const gender = document.querySelector("#gender");
+const age = document.querySelector("#age");
+const tag_1 = document.querySelector("#tag_1");
+const tag_2 = document.querySelector("#tag_2");
+const tag_3 = document.querySelector("#tag_3");
+const searchTag = document.querySelector("#searchTag");
+
+if(!editMode){
+
+height.value = tags.height;
+
+gender.value = tags.gender;
+
+age.value = tags.age;
+
+
+tag_1.innerHTML= tags.tag_1;
+
+tag_2.innerHTML= tags.tag_2;
+
+tag_3.innerHTML = tags.tag_3;
+
+searchTag.innerHTML = tags.searchTag;
+    console.log("infos loaded");
+    console.log(height);
+}else{
+   
+
+}
+
 }
 
 
@@ -187,26 +243,26 @@ console.log("updated");
             <div className="info">
             <div className="personal">
                 <ul>
-                    <li>cm<input type="text" placeholder="height" onChange={e=> tags.height = e.target.value}  /></li>
-                    <li><select name="gender" id="gender" placeholder="gender" onChange={e=> tags.gender = e.target.value}>
+                    <li>cm<input id="height" type="text" placeholder="height" onChange={e=> saveTag.height = e.target.value} readOnly /></li>
+                    <li><select name="gender" id="gender" placeholder="gender" onChange={e=> saveTag.gender = e.target.value} disabled>
                         <option value={"man"}>man</option>
                         <option value={"woman"}>woman</option>
                        
                         </select></li>
-                    <li>Years<input type="text" placeholder="age" onChange={e=> tags.age = e.target.value}  /></li>
+                    <li>Years<input type="text" placeholder="age" onChange={e=> saveTag.age = e.target.value} id="age" readOnly/></li>
                 </ul>
             </div>
             <div className="interest">
             <ul>
-                    <button className="tagButton" onClick={e=> showTagWindow(e.target.value)} onChange={e=> tags.tag_1 = e.target.value} value={"tag_1"}>click me</button>
-                    <button className="tagButton" onClick={e=>showTagWindow(e.target.value)} onChange={e=> tags.tag_2 = e.target.value} value={"tag_2"}>click me</button>
-                    <button className="tagButton" onClick={e=>showTagWindow(e.target.value)} onChange={e=> tags.tag_3 = e.target.value} value={"tag_3"}>click me</button>
+                    <button id="tag_1" className="tagButton" onClick={e=> showTagWindow(e.target.value)} onChange={e=> saveTag.tag_1 = e.target.value} value={"tag_1"} disabled= {isDisabled}></button>
+                    <button id="tag_2" className="tagButton" onClick={e=>showTagWindow(e.target.value)} onChange={e=> saveTag.tag_2 = e.target.value} value={"tag_2"} disabled= {isDisabled}></button>
+                    <button id="tag_3" className="tagButton" onClick={e=>showTagWindow(e.target.value)} onChange={e=> saveTag.tag_3 = e.target.value} value={"tag_3"} disabled= {isDisabled}></button>
                 </ul>
             </div>
             <div className="searchingFor">
             <ul>
                     <li>Searching for:</li>
-                    <button id="searchTag" onClick={e=>showSearchWindow(e.target.value)} onChange={e => tags.searchTag = e.target.value} value={"lo"}>click me</button>
+                    <button id="searchTag" onClick={e=>showSearchWindow(e.target.value)} onChange={e => saveTag.searchTag = e.target.value} value={"lo"} disabled= {isDisabled}></button>
                 </ul>
             </div>
         </div>
