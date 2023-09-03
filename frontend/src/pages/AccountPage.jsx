@@ -137,7 +137,7 @@ function editProfile(){
     const height = document.querySelector("#height");
     const gender = document.querySelector("#gender");
     const age = document.querySelector("#age");
-
+    const c = document.querySelector("#cancel");
     if(b.innerHTML == "Save Profile"){
         b.innerHTML = "Edit Profile";
         updateInfo();
@@ -154,6 +154,7 @@ function editProfile(){
       age.readOnly = false;
       setIsDisabled(false);
       setEditMode(true);
+     c.style.display = "block";
     }
     console.log(tags);
 }
@@ -218,6 +219,25 @@ searchTag.innerHTML = tags.searchTag;
 
 }
 
+function cancelEdit(){
+    setEditMode(false);
+    const b = document.querySelector("#EditButton");
+    const height = document.querySelector("#height");
+    const gender = document.querySelector("#gender");
+    const age = document.querySelector("#age");
+    const c = document.querySelector("#cancel");
+
+    b.innerHTML = "Edit Profile"; 
+    
+   
+      
+    height.readOnly = true;
+    gender.disabled = true;
+    age.readOnly = true;
+    setIsDisabled(true);
+   c.style.display = "none";
+}
+
 
     return <div id="AccountPage">
         <div id="AccountIntro">
@@ -226,7 +246,11 @@ searchTag.innerHTML = tags.searchTag;
             <button id="ProfileButton"> <input type="file" name="img" onChange={e=>handleImage(0,e)}/><img src={"http://localhost:3004/images/"+pic[0]} alt=""/> </button>
         
             <h1>{prop.username}</h1>
-            <button id="EditButton" onClick={editProfile}>Edit Profile</button>
+            <div id="EditButtons">
+                          <button id="EditButton" onClick={editProfile}>Edit Profile</button>
+            <button id="cancel" onClick={cancelEdit} style={{display: "none"}}>Cancel</button>  
+            </div>
+
             <div id="likes"><img src="src/assets/heart.png" alt=""/>
             <p>0</p>
             </div>
