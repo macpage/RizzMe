@@ -7,8 +7,10 @@ function RegisterPage(){
     const [username,setUsername] = useState();
     const [password,setPassword] = useState();
     const [filename,setFilename] = useState("penis");
+    const [tags,setTags] = useState({"height": null,"gender": "man","age": null, "tag_1": null, "tag_2": null, "tag_3": null, "searchTag": null});
+    const [likes,setLikes] = useState(0);
     const handeSubmit = (e)=>{
-        axios.post("http://localhost:3004/register", {username,password,filename}).then(result=>console.log(result))
+        axios.post("http://localhost:3004/register", {username,password,filename,likes,height:0,gender:"man",age:0,tag_1:null,tag_2:null,tag_3:null,searchTag: null}).then(result=>console.log(result))
     }
     const navigate = useNavigate();
     const toLogin=()=>{

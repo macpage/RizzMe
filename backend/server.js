@@ -105,3 +105,22 @@ app.get('/deleteImage', (req, res) => {
     .then((images) => res.json(images))
     .catch((err) => res.json(err));
 });
+
+app.get('/updateInfo', (req, res) => {
+  console.log(req.query);
+  userModel
+    .findOneAndUpdate(
+      { username: req.query.name },
+      {
+        height: req.query.height,
+        gender: req.query.gender,
+        age: req.query.age,
+        tag_1: req.query.tag_1,
+        tag_2: req.query.tag_2,
+        tag_3: req.query.tag_3,
+        searchTag: req.query.searchTag,
+      }
+    )
+    .then((user) => res.json(user))
+    .catch((err) => res.json(err));
+});

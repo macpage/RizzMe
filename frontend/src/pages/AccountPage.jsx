@@ -10,7 +10,7 @@ function AccountPage(prop){
     console.log("broo: " +img);
    const [name,setName] = useState("plss");
    const [tags,setTags] = useState({"height": null,"gender": "man","age": null, "tag_1": null, "tag_2": null, "tag_3": null, "searchTag": null});
-   
+   const [likes,setLikes] = useState();
 
    const [tagButton,setTagButton] = useState();
   
@@ -131,6 +131,7 @@ function editProfile(){
     
     if(b.innerHTML == "Save Profile"){
         b.innerHTML = "Edit Profile";
+        updateInfo();
     }else{
       b.innerHTML = "Save Profile";  
     }
@@ -156,6 +157,12 @@ function updateSearchTag(e){
 tags.searchTag = e;
 }
 
+function updateInfo(){
+    axios.get("http://localhost:3004/updateInfo", {params:{name: prop.username,height:tags.height,gender:tags.gender,age:tags.age,tag_1:tags.tag_1,tag_2:tags.tag_2,tag_3:tags.tag_3,searchTag: tags.searchTag}})
+console.log("updated");
+}
+
+
     return <div id="AccountPage">
         <div id="AccountIntro">
             
@@ -164,6 +171,9 @@ tags.searchTag = e;
         
             <h1>{prop.username}</h1>
             <button id="EditButton" onClick={editProfile}>Edit Profile</button>
+            <div id="likes"><img src="src/assets/heart.png" alt=""/>
+            <p>0</p>
+            </div>
         </div>
         <div id="AccountInfo">
             <div className="pics">

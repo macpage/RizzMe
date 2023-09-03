@@ -409,6 +409,7 @@ animation: spawn 0.5s;
   align-items: center;
   padding: 2vh;
   box-sizing: border-box;
+  gap: 2vh;
 }
 
 #AccountIntro img{
@@ -448,6 +449,29 @@ animation: spawn 0.5s;
   width: 12vh;
   background-color: #2a2a2a;
   object-fit: cover;
+}
+
+#AccountIntro img{
+
+  background-color: #2a2a2a;
+  object-fit: cover;
+}
+
+#likes img{
+  all: unset;
+  height: 6vh;
+  width: 6vh;
+}
+#likes{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1vh;
+
+}
+
+#likes p{
+  font-size: 40px;
 }
 
 #AccountInfo .pics button:hover,#AccountIntro button:hover  {
