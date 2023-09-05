@@ -162,15 +162,31 @@ function editProfile(){
 function updateTags(e,b){
    
     if(b == "tag_1"){
-        saveTag.tag_1 = e;
+        setTags(datas=>({
+            ...datas,
+            [3]: e
+         }))
     }
     if(b == "tag_2"){
-        saveTag.tag_2 = e;
+        setTags(datas=>({
+            ...datas,
+            [4]: e
+         }))
     }
     if(b == "tag_3"){
-        saveTag.tag_3 = e;
+        setTags(datas=>({
+            ...datas,
+            [5]: e
+         }))
     }
     
+    console.log("tags");
+    console.log(tags.tag_1);
+    console.log(saveTag.tag_1);
+    console.log(tags.tag_2);
+    console.log(saveTag.tag_2);
+    console.log(tags.tag_3);
+    console.log(saveTag.tag_3);
 }
 
 
@@ -179,13 +195,32 @@ function updateSearchTag(e){
 }
 
 function updateInfo(){
+    console.log("updated");
+console.log(tags);
+console.log(saveTag);
     axios.get("http://localhost:3004/updateInfo", {params:{name: prop.username,height:saveTag.height,gender:saveTag.gender,age:saveTag.age,tag_1:saveTag.tag_1,tag_2:saveTag.tag_2,tag_3:saveTag.tag_3,searchTag: saveTag.searchTag}})
-console.log("updated");
+
 }
 
 async function loadInfos(){
   await axios.get("http://localhost:3004/updateInfo", {params:{name:prop.username}}).then(res=>(tags.height= res.data.height,tags.gender= res.data.gender,tags.age= res.data.age, tags.tag_1= res.data.tag_1, tags.tag_2= res.data.tag_2, tags.tag_3= res.data.tag_3, tags.searchTag= res.data.searchTag));
-console.log(tags.height);
+console.log("tags loaded");
+saveTag.height= tags.height;
+
+saveTag.gender = tags.gender;
+
+saveTag.age = tags.age;
+
+
+saveTag.tag_1 = tags.tag_1;
+
+saveTag.tag_2 = tags.tag_2;
+
+saveTag.tag_3 = tags.tag_3;
+
+saveTag.searchTag = tags.searchTag;
+console.log(tags);
+console.log(saveTag);
 const height = document.querySelector("#height");
 const gender = document.querySelector("#gender");
 const age = document.querySelector("#age");
@@ -193,6 +228,7 @@ const tag_1 = document.querySelector("#tag_1");
 const tag_2 = document.querySelector("#tag_2");
 const tag_3 = document.querySelector("#tag_3");
 const searchTag = document.querySelector("#searchTag");
+
 
 if(!editMode){
 
