@@ -1,8 +1,8 @@
 import SwipeProfile from "../components/SwipeProfile";
 
-function SwipePage(){
+function SwipePage(prop){
     return <div id="SwipePage">
-        <SwipeProfile></SwipeProfile>
+        <SwipeProfile username={prop.username}></SwipeProfile>
     </div>
 }
 

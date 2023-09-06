@@ -126,9 +126,11 @@ app.get('/updateInfo', (req, res) => {
 });
 
 app.get('/getInfos', (req, res) => {
-  console.log(req.query.name);
+  console.log('lol');
+  console.log(req.query);
+  console.log(req.query.username);
   userModel
-    .find({ username: req.query.name })
+    .find()
     .then((user) => res.json(user))
     .catch((err) => res.json(err));
 });

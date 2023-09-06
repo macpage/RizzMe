@@ -1,7 +1,14 @@
 
+import axios from "axios";
 import { useState } from "react";
 
-function SwipeProfile(){
+function SwipeProfile(prop){
+
+    console.log("my userame: " + prop.username);
+    async function loadProfiles(){
+    await axios.get("http://localhost:3004/getInfos" ,{params:{username: prop.username}}).then(res=>console.log(res));   
+    }
+    loadProfiles();
     const [pic,setPic] = useState("src/assets/Makima.webp");
     const [show,setShow] = useState();
     const handleClick = event =>{

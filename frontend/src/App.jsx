@@ -12,7 +12,7 @@ import AccountPage from './pages/AccountPage'
 function App() {
   const [data,setData] = useState();
   function getData(d){
-  console.log(d)
+  console.log("lol" + d)
   setData(d);
   }
 
@@ -24,7 +24,7 @@ function App() {
       <Routes>
         <Route path='/' element={<LoginPage sendData={getData}></LoginPage>}></Route>
         <Route path='/RegisterPage' element={<RegisterPage></RegisterPage>}></Route>
-        <Route path='/SwipePage' element={<SwipePage></SwipePage>}></Route>
+        <Route path='/SwipePage' element={<SwipePage username={data}></SwipePage>}></Route>
         <Route path='/AccountPage' element={<AccountPage username={data}></AccountPage>}></Route>
       </Routes>
   <Footer></Footer>
