@@ -14,8 +14,10 @@ function AccountPage(prop){
    
    const [saveTag,setSaveTag] = useState({"height": tags.height,"gender": tags.gender,"age": tags.age, "tag_1": tags.tag_1,"tag_2": tags.tag_2,"tag_3": tags.tag_3,"searchTag": tags.searchTag});
 
+   const [moreSaveTag,setMoreSaveTag] = useState({"tag_1": null,"tag_2": null,"tag_3": null});
+
    const [tagButton,setTagButton] = useState();
-   const [isDisabled,setIsDisabled] = useState();
+   const [isDisabled,setIsDisabled] = useState(true);
 
    const [editMode,setEditMode] = useState(false);
   
@@ -162,22 +164,19 @@ function editProfile(){
 function updateTags(e,b){
    
     if(b == "tag_1"){
-        setTags(datas=>({
-            ...datas,
-            [3]: e
-         }))
+        saveTag.tag_1 = e;
+        tags.tag_1 = e;
+        moreSaveTag[0] = e;
     }
     if(b == "tag_2"){
-        setTags(datas=>({
-            ...datas,
-            [4]: e
-         }))
+        saveTag.tag_2 = e;
+        tags.tag_2 = e;
+        moreSaveTag[1] = e;
     }
     if(b == "tag_3"){
-        setTags(datas=>({
-            ...datas,
-            [5]: e
-         }))
+        saveTag.tag_3 = e;
+        tags.tag_3 = e;
+        moreSaveTag[2] = e;
     }
     
     console.log("tags");
@@ -187,6 +186,7 @@ function updateTags(e,b){
     console.log(saveTag.tag_2);
     console.log(tags.tag_3);
     console.log(saveTag.tag_3);
+    console.log(moreSaveTag[0])
 }
 
 
@@ -199,12 +199,39 @@ function updateInfo(){
 console.log(tags);
 console.log(saveTag);
     axios.get("http://localhost:3004/updateInfo", {params:{name: prop.username,height:saveTag.height,gender:saveTag.gender,age:saveTag.age,tag_1:saveTag.tag_1,tag_2:saveTag.tag_2,tag_3:saveTag.tag_3,searchTag: saveTag.searchTag}})
-
+    const c = document.querySelector("#cancel");
+    c.style.display = "none";
 }
 
 async function loadInfos(){
   await axios.get("http://localhost:3004/updateInfo", {params:{name:prop.username}}).then(res=>(tags.height= res.data.height,tags.gender= res.data.gender,tags.age= res.data.age, tags.tag_1= res.data.tag_1, tags.tag_2= res.data.tag_2, tags.tag_3= res.data.tag_3, tags.searchTag= res.data.searchTag));
 console.log("tags loaded");
+console.log(moreSaveTag[0]);
+console.log(tags.tag_1);
+
+
+    if(moreSaveTag[0]!=null){
+    saveTag.tag_1 = moreSaveTag[0];    
+    console.log("newwwwww");
+    }else if(moreSaveTag[0]==null){
+        saveTag.tag_1 = tags.tag_1;    
+        console.log("moooooooo");
+        }
+    if(moreSaveTag[1]!=null){
+        saveTag.tag_2 = moreSaveTag[1];    
+        }else if(moreSaveTag[1]==null){
+            saveTag.tag_2 = tags.tag_2;      
+            }
+        if(moreSaveTag[2]!=null){
+            saveTag.tag_3 = moreSaveTag[2];    
+            }else if(moreSaveTag[2]==null){
+                saveTag.tag_3 = tags.tag_3;       
+                }
+    
+    
+    
+
+console.log(moreSaveTag[0]);
 saveTag.height= tags.height;
 
 saveTag.gender = tags.gender;
@@ -212,11 +239,6 @@ saveTag.gender = tags.gender;
 saveTag.age = tags.age;
 
 
-saveTag.tag_1 = tags.tag_1;
-
-saveTag.tag_2 = tags.tag_2;
-
-saveTag.tag_3 = tags.tag_3;
 
 saveTag.searchTag = tags.searchTag;
 console.log(tags);
@@ -279,7 +301,7 @@ function cancelEdit(){
         <div id="AccountIntro">
             
            
-            <button id="ProfileButton"> <input type="file" name="img" onChange={e=>handleImage(0,e)}/><img src={"http://localhost:3004/images/"+pic[0]} alt=""/> </button>
+            <button id="ProfileButton"> <input disabled={isDisabled} type="file" name="img" onChange={e=>handleImage(0,e)}/><img src={"http://localhost:3004/images/"+pic[0]} alt=""/> </button>
         
             <h1>{prop.username}</h1>
             <div id="EditButtons">
@@ -293,12 +315,12 @@ function cancelEdit(){
         </div>
         <div id="AccountInfo">
             <div className="pics">
-            <button> <input type="file" name="img" onChange={e=>handleImage(0,e)}/><img src={"http://localhost:3004/images/"+pic[0]} alt=""/> </button>
-            <button> <input type="file" name="img" onChange={e=>handleImage(1,e)}/><img src={"http://localhost:3004/images/"+pic[1]} alt=""/> </button>
-            <button> <input type="file" name="img" onChange={e=>handleImage(2,e)}/><img src={"http://localhost:3004/images/"+pic[2]} alt=""/> </button>
-            <button> <input type="file" name="img" onChange={e=>handleImage(3,e)}/><img src={"http://localhost:3004/images/"+pic[3]} alt=""/> </button>
-            <button> <input type="file" name="img" onChange={e=>handleImage(4,e)}/><img src={"http://localhost:3004/images/"+pic[4]} alt=""/> </button>
-            <button> <input type="file" name="img" onChange={e=>handleImage(5,e)}/><img src={"http://localhost:3004/images/"+pic[5]} alt=""/> </button>
+            <button> <input disabled={isDisabled}  type="file" name="img" onChange={e=>handleImage(0,e)}/><img src={"http://localhost:3004/images/"+pic[0]} alt=""/> </button>
+            <button> <input disabled={isDisabled} type="file" name="img" onChange={e=>handleImage(1,e)}/><img src={"http://localhost:3004/images/"+pic[1]} alt=""/> </button>
+            <button> <input disabled={isDisabled} type="file" name="img" onChange={e=>handleImage(2,e)}/><img src={"http://localhost:3004/images/"+pic[2]} alt=""/> </button>
+            <button> <input disabled={isDisabled} type="file" name="img" onChange={e=>handleImage(3,e)}/><img src={"http://localhost:3004/images/"+pic[3]} alt=""/> </button>
+            <button> <input disabled={isDisabled} type="file" name="img" onChange={e=>handleImage(4,e)}/><img src={"http://localhost:3004/images/"+pic[4]} alt=""/> </button>
+            <button> <input disabled={isDisabled} type="file" name="img" onChange={e=>handleImage(5,e)}/><img src={"http://localhost:3004/images/"+pic[5]} alt=""/> </button>
             </div>
             <div className="info">
             <div className="personal">
