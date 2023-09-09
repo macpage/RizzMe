@@ -20,6 +20,7 @@ let profileArr = [];
             console.log("index");
            console.log(index);
            delete profileArr[index];
+           console.log("dsmfls");
         }
      });
       
