@@ -25,9 +25,18 @@ loadProfiles();
      });
       
         console.log(profileArr);
+
+        const profs = document.querySelectorAll("#SwipeProfile");
+        console.log("lol");
+        profs.forEach((e,index) => {
+            if(index != 0){
+               e.style.display = "none";
+            }
+        });
+        
     }
     return <div id="SwipePage">
-       <SwipeProfile style={{display: "none"}}> </SwipeProfile>
+      { profileArr.map(profs => <SwipeProfile username={profs.username} key={profs._id}> </SwipeProfile>)}
        
     </div>
 }

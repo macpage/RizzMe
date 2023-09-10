@@ -5,14 +5,47 @@ import { useState } from "react";
 function SwipeProfile(prop){
 const [profiles,setProfiles] = useState([]);
 let profileArr = [];
-
+let pics;
+let newPics = [];
     console.log("my userame: " + prop.username);
+
+const [imgText,setImgText] = useState(null);
+
+const [notFound,setNotFound] = useState(true);
+
+async function loadImages(){
+    await  axios.get("http://localhost:3004/getImage").then(res=>{pics = res.data});
+
+pics.forEach(e => {
+    
+    if(e.username == prop.username){
+        console.log(e);
+        newPics.push(e);
+        setNotFound(false);
+    }
+
+
+});
+
+console.log(newPics);
+console.log(pic);
+console.log(pic.length);
+
+if(pic[0] == null && !notFound){
+    setPic(newPics);
+ 
+}
+
+}
+
+
+
     async function loadProfiles(){
         if(profiles.length<1){
                 await axios.get("http://localhost:3004/getInfos" ,{params:{username: prop.username}}).then(res => { setProfiles(res.data)});
                 profileArr = profiles;
         }
-
+   loadImages();
         profileArr = profiles;
         console.log("new:")
      profileArr.forEach((e,index) => {
@@ -28,11 +61,10 @@ let profileArr = [];
     }
     
     loadProfiles();
-    const [pic,setPic] = useState("src/assets/Makima.webp");
+    const [pic,setPic] = useState([null,null,null,null,null,null]);
     const [show,setShow] = useState();
     const handleClick = event =>{
-        console.log(event.target.src);
-        setPic(event.target.src)
+       
     }
 
     const activateRizz = event => {
@@ -49,18 +81,15 @@ let profileArr = [];
     }
     return <div id="SwipeProfile">
  <div id="SwipeIntro">
-<img className="SwipePic" src="" alt="" />
-<h1 id="SwipeName">username</h1>
+<img className="SwipePic" src={pic[0] ? "http://localhost:3004/images/"+pic[0].image : null}  alt="" />
+<h1 id="SwipeName">{prop.username}</h1>
  </div>
  <div id="SwipeInfo">
  <div className="pics">
-           <img src={"http://localhost:3004/images/"+pic[0]} alt=""/>
-        <img src={"http://localhost:3004/images/"+pic[1]} alt=""/>
-           <img src={"http://localhost:3004/images/"+pic[2]} alt=""/>
-            <img src={"http://localhost:3004/images/"+pic[3]} alt=""/> 
-           <img src={"http://localhost:3004/images/"+pic[4]} alt=""/>
-           <img src={"http://localhost:3004/images/"+pic[5]} alt=""/>
-            </div>
+    {console.log(newPics.length)}
+    {console.log("newpics")}
+{pic.map((e,index) =>   <img key={index} src={pic[0] ? "http://localhost:3004/images/"+e.image : null} alt=""/>)}
+ </div>
             <div className="info">
             <div className="personal">
                 <ul>
