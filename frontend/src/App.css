@@ -264,9 +264,6 @@ grid-row: 2/3;
 
 #SwipeButtons {
   width: 40vh;
-
-
-  
   display: flex;
   justify-content: center;
   align-items: end;
@@ -286,7 +283,6 @@ grid-row: 2/3;
 }
 
 .SwipePic{
- 
   height: 40vh;
   width: 40vh;
   object-fit: cover;
@@ -308,14 +304,14 @@ grid-row: 2/3;
 }
 
 #SwipeInfo{
-  background-color: #9038fb;
-  width: 50vh;
   height: 70vh;
+  width: 50vh;
+  background-color: #9038fb;
   padding: 2vh;
   box-sizing: border-box;
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  row-gap: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 }
 
@@ -324,15 +320,15 @@ grid-row: 2/3;
   width: 12vh;
   height: 12vh;
   object-fit: cover;
+  
 }
 
 #SwipeInfo .pics{
   display: grid;
-  grid-template-columns:  repeat(3,auto);
-  grid-template-rows: 1fr 1fr;
-
+  grid-template-columns: repeat(3,auto);
   justify-content: space-between;
-  row-gap: 1vh;
+  row-gap: 2vh;
+  width: 100%;
  
 }
 
@@ -482,6 +478,8 @@ animation: spawn 0.5s;
 #AccountInfo .pics button{
 all: unset;
 color: transparent;
+height: 12vh;
+width: 12vh;;
 }
 
 #AccountInfo button input::-webkit-file-upload-button,#AccountIntro button input::-webkit-file-upload-button  {

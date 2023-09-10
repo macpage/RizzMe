@@ -49,11 +49,42 @@ let profileArr = [];
     }
     return <div id="SwipeProfile">
  <div id="SwipeIntro">
-
-{profileArr.map(e=><p key={e._id}>{e.username}</p>)}
+<img className="SwipePic" src="" alt="" />
+<h1 id="SwipeName">username</h1>
  </div>
- <div id="SwipeInfo"></div>
+ <div id="SwipeInfo">
+ <div className="pics">
+           <img src={"http://localhost:3004/images/"+pic[0]} alt=""/>
+        <img src={"http://localhost:3004/images/"+pic[1]} alt=""/>
+           <img src={"http://localhost:3004/images/"+pic[2]} alt=""/>
+            <img src={"http://localhost:3004/images/"+pic[3]} alt=""/> 
+           <img src={"http://localhost:3004/images/"+pic[4]} alt=""/>
+           <img src={"http://localhost:3004/images/"+pic[5]} alt=""/>
+            </div>
+            <div className="info">
+            <div className="personal">
+                <ul>
+                    <li>cm</li>
+                    <li>woman</li>
+                    <li>Years</li>
+                </ul>
+            </div>
+            <div className="interest">
+            <ul>
+<li>bro</li>
+<li>lol</li>
+<li>xd</li>
+                </ul>
+            </div>
+            <div className="searchingFor">
+            <ul>
+                    <li>Searching for:</li>
+                    <li>fun</li>
+                </ul>
+            </div>
+ </div>
 
+    </div>
     </div>
 }
 
