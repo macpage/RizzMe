@@ -5,9 +5,10 @@ import { useState } from "react";
 function SwipeProfile(prop){
 const [profiles,setProfiles] = useState([]);
 let profileArr = [];
+const [bro,setBro] = useState();
 let pics;
 let newPics = [];
-    console.log("my userame: " + prop.username);
+const [swipeName,setSwipeName] = useState()    
 
 const [imgText,setImgText] = useState(null);
 
@@ -19,17 +20,14 @@ async function loadImages(){
 pics.forEach(e => {
     
     if(e.username == prop.username){
-        console.log(e);
         newPics.push(e);
         setNotFound(false);
+        setSwipeName(e.username);
     }
 
 
 });
 
-console.log(newPics);
-console.log(pic);
-console.log(pic.length);
 
 if(pic[0] == null && !notFound){
     setPic(newPics);
@@ -44,20 +42,30 @@ if(pic[0] == null && !notFound){
         if(profiles.length<1){
                 await axios.get("http://localhost:3004/getInfos" ,{params:{username: prop.username}}).then(res => { setProfiles(res.data)});
                 profileArr = profiles;
+
         }
    loadImages();
         profileArr = profiles;
-        console.log("new:")
+
      profileArr.forEach((e,index) => {
-        if(e.username == prop.username){
-            console.log("index");
-           console.log(index);
-           delete profileArr[index];
-           console.log("dsmfls");
+        
+     if(e.username == prop.username){
+       
+        console.log("soooo");
+        if(bro==null){
+            setBro(e); 
         }
+       
+     }
+        
      });
-      
-        console.log(profileArr);
+
+              
+     
+   
+
+
+    
     }
     
     loadProfiles();
@@ -72,7 +80,7 @@ if(pic[0] == null && !notFound){
     }
     const deactivateRizz = event => {
         //
-        console.log(show);
+      
         document.querySelector(".rizzText").classList.add("closing");
         setTimeout(() => {
             document.querySelector(".rizzText").classList.remove("closing");
@@ -82,33 +90,32 @@ if(pic[0] == null && !notFound){
     return <div id="SwipeProfile">
  <div id="SwipeIntro">
 <img className="SwipePic" src={pic[0] ? "http://localhost:3004/images/"+pic[0].image : null}  alt="" />
-<h1 id="SwipeName">{prop.username}</h1>
+<h1 id="SwipeName">{swipeName}</h1>
  </div>
  <div id="SwipeInfo">
  <div className="pics">
-    {console.log(newPics.length)}
-    {console.log("newpics")}
+
 {pic.map((e,index) =>   <img key={index} src={pic[0] ? "http://localhost:3004/images/"+e.image : null} alt=""/>)}
  </div>
             <div className="info">
             <div className="personal">
                 <ul>
-                    <li>cm</li>
-                    <li>woman</li>
-                    <li>Years</li>
+                    <li>{bro ? bro.height : "yes"}</li>
+                    <li>{bro ? bro.gender : "yes"}</li>
+                    <li>{bro ? bro.age : "yes"}</li>
                 </ul>
             </div>
             <div className="interest">
             <ul>
-<li>bro</li>
-<li>lol</li>
-<li>xd</li>
+<li>{bro ? bro.tag_1 : "yes"}</li>
+<li>{bro ? bro.tag_2 : "yes"}</li>
+<li>{bro ? bro.tag_3 : "yes"}</li>
                 </ul>
             </div>
             <div className="searchingFor">
             <ul>
                     <li>Searching for:</li>
-                    <li>fun</li>
+                    <li>{bro ? bro.searchTag : "yes"}</li>
                 </ul>
             </div>
  </div>
