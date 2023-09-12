@@ -5,7 +5,6 @@ import SearchInfo from "../components/SearchInfo";
 function AccountPage(prop){
     const [img,setImg] = useState();
     const [pic,setPic] = useState([]);
-    const [bro,setBro] = useState(null);
    const [counter,setCounter] = useState(0);
     console.log("broo: " +img);
    const [name,setName] = useState("plss");

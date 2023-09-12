@@ -4,6 +4,9 @@ import axios from "axios";
 function SwipePage(prop){
     const [profiles,setProfiles] = useState([]);
 let profileArr = [];
+const [liked,setLiked] = useState([]);
+const [trash,setTrash] = useState([]);
+const [counter,setCounter] = useState(0);
 
 loadProfiles();
 
@@ -20,23 +23,50 @@ loadProfiles();
             console.log("index");
            console.log(index);
            delete profileArr[index];
-           console.log("dsmfls");
+        
         }
      });
       
         console.log(profileArr);
 
         const profs = document.querySelectorAll("#SwipeProfile");
-        console.log("lol");
+        console.log("counter_ " +counter);
         profs.forEach((e,index) => {
-            if(index != 0){
-               e.style.display = "none";
+            if(index == counter){
+               e.style.display = "flex";
+               
+            }else{
+                e.style.display = "none";
             }
         });
         
     }
+
+    function dislike(profile){
+        profileArr.forEach(e=>{
+           
+                console.log("in the trash can " + profile)
+                profileArr.forEach(e=>{
+                    if(e.username == profile){
+                        console.log("in the trash can " + profile);
+                        console.log(e);
+                        setTrash(e);
+                        
+                    }
+                })
+                console.log("trash");
+                console.log(trash);
+           
+        })
+
+        setCounter(counter+1);
+    }
+
+    function swipeBack(){
+        setCounter(counter-1);
+    }
     return <div id="SwipePage">
-      { profileArr.map(profs => <SwipeProfile username={profs.username} key={profs._id}> </SwipeProfile>)}
+      { profileArr.map(profs => <SwipeProfile swipeBack={swipeBack} dislike={dislike} username={profs.username} key={profs._id}> </SwipeProfile>)}
        
     </div>
 }

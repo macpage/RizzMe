@@ -51,7 +51,7 @@ if(pic[0] == null && !notFound){
         
      if(e.username == prop.username){
        
-        console.log("soooo");
+      
         if(bro==null){
             setBro(e); 
         }
@@ -91,6 +91,10 @@ if(pic[0] == null && !notFound){
  <div id="SwipeIntro">
 <img className="SwipePic" src={pic[0] ? "http://localhost:3004/images/"+pic[0].image : null}  alt="" />
 <h1 id="SwipeName">{swipeName}</h1>
+<div id="SwipeButtons">
+    <button onClick={prop.swipeBack}><img src="src/assets/SwipeBack.png" alt="" /></button>
+    <button onClick={()=>prop.dislike(prop.username)}><img src="src/assets/Trash.png" alt=""  /></button>
+</div>
  </div>
  <div id="SwipeInfo">
  <div className="pics">
