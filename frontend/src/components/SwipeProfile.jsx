@@ -60,19 +60,18 @@ if(pic[0] == null && !notFound){
         
      });
 
-              
-     
-   
-
-
     
     }
     
     loadProfiles();
     const [pic,setPic] = useState([null,null,null,null,null,null]);
     const [show,setShow] = useState();
-    const handleClick = event =>{
+    const switchPics = e =>{
+       let pic = document.querySelectorAll(".SwipePic");
+      
        
+       console.log(prop.id)
+       pic[prop.id].src = "http://localhost:3004/images/"+e.image
     }
 
     const activateRizz = event => {
@@ -99,7 +98,7 @@ if(pic[0] == null && !notFound){
  <div id="SwipeInfo">
  <div className="pics">
 
-{pic.map((e,index) =>   <img key={index} src={pic[0] ? "http://localhost:3004/images/"+e.image : null} alt=""/>)}
+{pic.map((e,index) =>   <img onClick={()=> switchPics(e)} key={index} src={pic[0] ? "http://localhost:3004/images/"+e.image : null} alt=""/>)}
  </div>
             <div className="info">
             <div className="personal">

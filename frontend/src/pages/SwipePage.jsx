@@ -66,7 +66,7 @@ loadProfiles();
         setCounter(counter-1);
     }
     return <div id="SwipePage">
-      { profileArr.map(profs => <SwipeProfile swipeBack={swipeBack} dislike={dislike} username={profs.username} key={profs._id}> </SwipeProfile>)}
+      { profileArr.map(profs => <SwipeProfile id={counter} swipeBack={swipeBack} dislike={dislike} username={profs.username} key={profs._id}> </SwipeProfile>)}
        
     </div>
 }
