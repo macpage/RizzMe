@@ -17,17 +17,17 @@ loadProfiles();
         }
 
         profileArr = profiles;
-        console.log("new:")
+       
      profileArr.forEach((e,index) => {
         if(e.username == prop.username){
-            console.log("index");
-           console.log(index);
+          
+
            delete profileArr[index];
         
         }
      });
       
-        console.log(profileArr);
+        
 
         const profs = document.querySelectorAll("#SwipeProfile");
         console.log("counter_ " +counter);
@@ -56,6 +56,32 @@ loadProfiles();
                 })
                 console.log("trash");
                 console.log(trash);
+               console.log(profileArr);
+           
+        })
+        if(counter+2 == profileArr.length){
+            setCounter(0);
+        }else{
+         setCounter(counter+1);   
+        }
+
+        
+    }
+
+    function like(profile){
+        profileArr.forEach(e=>{
+           
+                console.log("in the trash can " + profile)
+                profileArr.forEach(e=>{
+                    if(e.username == profile){
+                        console.log("in the trash can " + profile);
+                        console.log(e);
+                        setTrash(e);
+                        
+                    }
+                })
+                console.log("trash");
+                console.log(trash);
            
         })
 
@@ -63,7 +89,13 @@ loadProfiles();
     }
 
     function swipeBack(){
-        setCounter(counter-1);
+       
+        if(counter==0){
+            setCounter(profileArr.length-2);
+            console.log("broo")
+        }else{
+            setCounter(counter-1);
+        }
     }
     return <div id="SwipePage">
       { profileArr.map(profs => <SwipeProfile id={counter} swipeBack={swipeBack} dislike={dislike} username={profs.username} key={profs._id}> </SwipeProfile>)}
