@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
   tag_1: String,
   tag_2: String,
   tag_3: String,
+  liked: [String],
 });
 
 const userModel = mongoose.model('user', userSchema);

@@ -68,24 +68,30 @@ loadProfiles();
         
     }
 
-    function like(profile){
+   async function like(profile){
         profileArr.forEach(e=>{
            
                 console.log("in the trash can " + profile)
-                profileArr.forEach(e=>{
-                    if(e.username == profile){
-                        console.log("in the trash can " + profile);
-                        console.log(e);
-                        setTrash(e);
-                        
-                    }
-                })
-                console.log("trash");
-                console.log(trash);
+                if(e.username == profile){
+                    console.log("in the like can " + profile);
+                    console.log(e);
+                    liked.push(e.username)
+                    
+                }
+                console.log("like");
+                console.log(liked);
            
         })
 
-        setCounter(counter+1);
+        if(counter+2 == profileArr.length){
+            setCounter(0);
+        }else{
+         setCounter(counter+1);   
+        }
+
+       
+        await axios.get("http://localhost:3004/getLiked", {params:{username: prop.username, liked: liked}}).catch(err=>console.log(err));
+      
     }
 
     function swipeBack(){
@@ -98,7 +104,7 @@ loadProfiles();
         }
     }
     return <div id="SwipePage">
-      { profileArr.map(profs => <SwipeProfile id={counter} swipeBack={swipeBack} dislike={dislike} username={profs.username} key={profs._id}> </SwipeProfile>)}
+      { profileArr.map(profs => <SwipeProfile id={counter} swipeBack={swipeBack} like={like} dislike={dislike} username={profs.username} key={profs._id}> </SwipeProfile>)}
        
     </div>
 }

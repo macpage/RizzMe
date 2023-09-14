@@ -134,3 +134,18 @@ app.get('/getInfos', (req, res) => {
     .then((user) => res.json(user))
     .catch((err) => res.json(err));
 });
+
+app.get('/getLiked', (req, res) => {
+  console.log('broooo');
+  console.log(req.query.username);
+  console.log(req.query.liked);
+  userModel
+    .findOneAndUpdate(
+      { username: req.query.username },
+      {
+        liked: req.query.liked,
+      }
+    )
+    .then((user) => res.json(user))
+    .catch((err) => res.json(err));
+});

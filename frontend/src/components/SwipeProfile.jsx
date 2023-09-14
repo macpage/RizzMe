@@ -121,7 +121,10 @@ if(pic[0] == null && !notFound){
                     <li>{bro ? bro.searchTag : "yes"}</li>
                 </ul>
             </div>
+
  </div>
+ <div className="rizzText"><textarea name="" id="" cols="20" rows="10"></textarea>
+ <button onClick={()=> prop.like(prop.username)}><img id="rizzImg" src="src/assets/feuer.png" alt="" /></button></div>
 
     </div>
     </div>
