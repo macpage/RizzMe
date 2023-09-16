@@ -135,7 +135,7 @@ app.get('/getInfos', (req, res) => {
     .catch((err) => res.json(err));
 });
 
-app.get('/getLiked', (req, res) => {
+app.get('/updateLiked', (req, res) => {
   console.log('broooo');
   console.log(req.query.username);
   console.log(req.query.liked);
@@ -146,6 +146,14 @@ app.get('/getLiked', (req, res) => {
         liked: req.query.liked,
       }
     )
+    .then((user) => res.json(user))
+    .catch((err) => res.json(err));
+});
+
+app.get('/getLiked', (req, res) => {
+  console.log('found: ' + req.query.username);
+  userModel
+    .findOne({ username: req.query.username })
     .then((user) => res.json(user))
     .catch((err) => res.json(err));
 });

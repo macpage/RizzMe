@@ -14,6 +14,8 @@ const [imgText,setImgText] = useState(null);
 
 const [notFound,setNotFound] = useState(true);
 
+prop.filterLiked();
+
 async function loadImages(){
     await  axios.get("http://localhost:3004/getImage").then(res=>{pics = res.data});
 
@@ -87,6 +89,7 @@ if(pic[0] == null && !notFound){
         }, 400);
     }
     return <div id="SwipeProfile">
+      
  <div id="SwipeIntro">
 <img className="SwipePic" src={pic[0] ? "http://localhost:3004/images/"+pic[0].image : null}  alt="" />
 <h1 id="SwipeName">{swipeName}</h1>

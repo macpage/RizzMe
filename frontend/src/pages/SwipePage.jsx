@@ -4,21 +4,26 @@ import axios from "axios";
 function SwipePage(prop){
     const [profiles,setProfiles] = useState([]);
 let profileArr = [];
-const [liked,setLiked] = useState([]);
+let [liked,setLiked] = useState("empty");
 const [trash,setTrash] = useState([]);
 const [counter,setCounter] = useState(0);
 
 loadProfiles();
 
     async function loadProfiles(){
+        
         if(profiles.length<1){
                 await axios.get("http://localhost:3004/getInfos" ,{params:{username: prop.username}}).then(res => { setProfiles(res.data)});
                 profileArr = profiles;
-        }
+                console.log("likesssss " + prop.username);
+
+
+            }
 
         profileArr = profiles;
        
      profileArr.forEach((e,index) => {
+        
         if(e.username == prop.username){
           
 
@@ -27,7 +32,7 @@ loadProfiles();
         }
      });
       
-        
+     
 
         const profs = document.querySelectorAll("#SwipeProfile");
         console.log("counter_ " +counter);
@@ -38,8 +43,32 @@ loadProfiles();
             }else{
                 e.style.display = "none";
             }
+          
         });
         
+    }
+
+   async function filterLiked(){
+    await axios.get("http://localhost:3004/getLiked" ,{params: {username: prop.username}}).then(res=>(liked = res.data.liked));
+    console.log(liked)
+    console.log("hihii")
+        const profs = document.querySelectorAll("#SwipeProfile");
+        profs.forEach((e,index) => {
+            if(index == counter){
+               e.style.display = "flex";
+               
+            }else{
+                e.style.display = "none";
+            }
+            console.log(e.firstChild.childNodes[1].innerHTML)
+            console.log(liked)
+            liked.forEach(l=>{
+                if(l==e.firstChild.childNodes[1].innerHTML){
+                    e.style.display = "none";
+                }
+            })
+        });
+       
     }
 
     function dislike(profile){
@@ -90,7 +119,7 @@ loadProfiles();
         }
 
        
-        await axios.get("http://localhost:3004/getLiked", {params:{username: prop.username, liked: liked}}).catch(err=>console.log(err));
+        await axios.get("http://localhost:3004/updateLiked", {params:{username: prop.username, liked: liked}}).catch(err=>console.log(err));
       
     }
 
@@ -104,7 +133,7 @@ loadProfiles();
         }
     }
     return <div id="SwipePage">
-      { profileArr.map(profs => <SwipeProfile id={counter} swipeBack={swipeBack} like={like} dislike={dislike} username={profs.username} key={profs._id}> </SwipeProfile>)}
+      { profileArr.map(profs => <SwipeProfile id={counter} filterLiked={filterLiked} swipeBack={swipeBack} like={like} dislike={dislike} username={profs.username} key={profs._id}> </SwipeProfile>)}
        
     </div>
 }
