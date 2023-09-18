@@ -8,6 +8,7 @@ import Navbar from './components/Navbar'
 import RegisterPage from './pages/RegisterPage'
 import SwipePage from './pages/SwipePage'
 import AccountPage from './pages/AccountPage'
+import LikePage from './pages/LikePage'
 
 function App() {
   const [data,setData] = useState();
@@ -25,6 +26,7 @@ function App() {
         <Route path='/' element={<LoginPage sendData={getData}></LoginPage>}></Route>
         <Route path='/RegisterPage' element={<RegisterPage></RegisterPage>}></Route>
         <Route path='/SwipePage' element={<SwipePage username={data}></SwipePage>}></Route>
+        <Route path='/LikePage' element={<LikePage username={data}></LikePage>}></Route>
         <Route path='/AccountPage' element={<AccountPage username={data}></AccountPage>}></Route>
       </Routes>
   <Footer></Footer>

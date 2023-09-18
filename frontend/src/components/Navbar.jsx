@@ -5,12 +5,20 @@ function Navbar(){
     const toAccount=()=>{
         navigate("/AccountPage")
     }
+    const toLikes=()=>{
+        navigate("/LikePage")
+    }
     const toSwipePage=()=>{
         navigate("/SwipePage")
     }
     return <div id="Navbar">
                 
-        <button><img src="src/assets/user.png" alt="" onClick={toAccount} /></button>
+                <div id="NavButtons">
+                        <button><img src="src/assets/user.png" alt="" onClick={toAccount} /></button>
+                        <button><img src="src/assets/heart.png" alt="" onClick={toLikes} /></button>   
+                        <button><img src="src/assets/chat.png" alt="" onClick={""} /></button>   
+                </div>
+
         <h1 onClick={toSwipePage}><span className="highlight">rizz</span><span className="secondText">.me</span></h1>
     </div>
 }
