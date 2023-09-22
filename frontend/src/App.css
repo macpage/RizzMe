@@ -691,12 +691,11 @@ cursor: pointer;
 #LikePage{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 20vh 20vh;
+  grid-template-rows: 15vh 15vh;
   
   height: 90%;
   width: 90%;
-  gap: 2vh;
-
+gap: 1vh;
   
 align-items: center;
 }
@@ -705,7 +704,7 @@ align-items: center;
 #LikedProfile{
   background-color: #2a2a2a;
   width: 26vw;
-  height: 20vh;
+  height: 15vh;
   display: grid;
   grid-template-columns: 10vh 1fr;
   grid-template-rows: 5vh 1fr;
