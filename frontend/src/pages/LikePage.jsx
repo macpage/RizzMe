@@ -15,7 +15,10 @@ async function getLikes(){
 }
 getLikes();
     return <div id="LikePage">
-      {likes.map((e,i)=> <LikedProfile key={i} username={e}></LikedProfile>)}
+       <div id="Liked">
+        {likes.map((e,i)=> <LikedProfile key={i} username={e}></LikedProfile>)}
+       </div>
+      
       <div id="LikedBy"></div>
     </div>
   
