@@ -689,12 +689,16 @@ cursor: pointer;
 }
 
 #LikePage{
+  height: 90%;
+  width: 90%;
+}
+
+#Liked{
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 15vh 15vh;
   
-  height: 90%;
-  width: 90%;
+
 gap: 1vh;
   
 align-items: center;
