@@ -16,7 +16,7 @@ async function getLikes(){
 }
 getLikes();
     return <div id="LikePage">
-      <button>Likes</button>
+      <button>Likes you got</button>
       <button>Users you Liked</button>
        <div id="Liked">
 
