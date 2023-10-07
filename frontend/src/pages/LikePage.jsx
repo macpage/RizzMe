@@ -20,9 +20,9 @@ async function getLikes(){
 getLikes();
 
 window.addEventListener("DOMContentLoaded", ()=>{
-  likeHandler();
-})
 
+})
+likeHandler();
 function likeHandler(){
   const showLikedBy = document.querySelector("#LikedBy");
 const showLiked = document.querySelector("#Liked");
