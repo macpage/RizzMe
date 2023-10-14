@@ -24,22 +24,35 @@ async function getLikes(){
 getLikes();
 
 
+
+
 function change(show,b){
   console.log("changed");
   console.log(show);
   showLikedBy = document.querySelector("#LikedBy");
   showLiked = document.querySelector("#Liked");
+  let btn = document.querySelector("#LikeButtons").childNodes;
+  console.log(btn[0]);
+ 
   if(!show){
     showLikedBy.style.display = "grid";
     showLiked.style.display = "none";
-    b.style.backgroundColor = "#9038fb";
-   
+    btn[0].style.backgroundColor = "#9038fb";
+    btn[1].style.backgroundColor = "#2a2a2a";
   }else{
     showLikedBy.style.display = "none";
     showLiked.style.display = "grid";
+    btn[1].style.backgroundColor = "#9038fb";
+    btn[0].style.backgroundColor = "#2a2a2a";
   }
 
 }
+
+document.addEventListener("DOMContentLoaded", function(){
+  
+
+  
+});
     return <div id="LikePage">
       <div id="LikeButtons">
               <button onClick={(e) =>  change(false,e.target)}>Likes you Got</button>
