@@ -691,12 +691,33 @@ cursor: pointer;
 #LikePage{
   height: 90%;
   width: 90%;
+ display: flex;
+ flex-direction: column;
+ gap: 3vh;
+
+}
+
+#LikeButtons{
+  display: flex;
+ justify-content: space-around;
+ width: 26vw;
+}
+
+#LikeButtons button{
+ background-color: #2a2a2a;
+ border: none;
+ height: 3vh;
+ padding: 1vh;
+ font-size: 18px;
+ display: flex;
+ align-items: center;
+  color: #e0e0e0;
 }
 
 #Liked{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 15vh 15vh;
+  display: none;
+  grid-template-columns: 26vw;
+ 
   
 
 gap: 1vh;

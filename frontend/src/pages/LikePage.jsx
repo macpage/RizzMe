@@ -13,7 +13,6 @@ const [imgs,setImgs] = useState([null]);
 
 const [showLikes,setShowLikes] = useState();
 
-let isloaded = false;
 let showLikedBy;
 let showLiked ; 
 async function getLikes(){
@@ -23,39 +22,9 @@ async function getLikes(){
     }
 }
 getLikes();
-console.log(isloaded)
-
-window.addEventListener("DOMContentLoaded", ()=>{
-  likeHandler();
-  
-})
-
-if(isloaded){
-  console.log("heyo")
-  console.log(showLiked);
-}
-
-function likeHandler(){
-  isloaded = true;
-   showLikedBy = document.querySelector("#LikedBy");
-showLiked = document.querySelector("#Liked");
-
-  console.log(showLikedBy)
-  console.log(showLiked);
-if(showLikes){
-  showLikedBy.style.display = "grid";
-  showLiked.style.display = "none";
-  console.log("its true");
-}else{
-  showLikedBy.style.display = "none";
-  showLiked.style.display = "grid";
-  console.log("its false");
-}
 
 
-}
-
-function change(show){
+function change(show,b){
   console.log("changed");
   console.log(show);
   showLikedBy = document.querySelector("#LikedBy");
@@ -63,6 +32,8 @@ function change(show){
   if(!show){
     showLikedBy.style.display = "grid";
     showLiked.style.display = "none";
+    b.style.backgroundColor = "#9038fb";
+   
   }else{
     showLikedBy.style.display = "none";
     showLiked.style.display = "grid";
@@ -70,8 +41,11 @@ function change(show){
 
 }
     return <div id="LikePage">
-      <button onClick={() =>  change(false)}>Likes you Got</button>
+      <div id="LikeButtons">
+              <button onClick={(e) =>  change(false,e.target)}>Likes you Got</button>
       <button onClick={() => change(true)}>Users you Liked</button>
+      </div>
+
        <div id="Liked">
 
         {liked.map((e,i)=> <LikedProfile key={i} username={e}></LikedProfile>)}
