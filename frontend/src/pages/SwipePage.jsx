@@ -10,9 +10,16 @@ const [trash,setTrash] = useState([]);
 const [counter,setCounter] = useState(0);
 const empty = document.querySelector("#EmptyPage");
 const [sp,setSp] = useState();
+
+async function findUser(){
+    let username = prop.username;
+    await axios.post("http://localhost:3004/user" , {username}).then(res=> console.log(res));
+    console.log("yoooo")
+}
+
 loadProfiles();
     async function loadProfiles(){
-
+        
         if(profiles.length<1){
                 await axios.get("http://localhost:3004/getInfos" ,{params:{username: prop.username}}).then(res => { setProfiles(res.data)});
                 profileArr = profiles;
@@ -110,7 +117,7 @@ loadProfiles();
                 if(e.username == profile){
                     console.log("in the like can " + profile);
 
-                    liked.push(e.username)
+                    liked.push(e._id)
                     
                 }
                 console.log("like");
@@ -124,8 +131,8 @@ loadProfiles();
          setCounter(counter+1);   
         }
 
-       
-        await axios.get("http://localhost:3004/updateLiked", {params:{username: prop.username, liked: liked}}).catch(err=>console.log(err));
+        let username = prop.username;
+        await axios.post("http://localhost:3004/addLike", {username,liked}).catch(err=>console.log(err));
       
     }
 

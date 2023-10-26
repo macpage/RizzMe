@@ -20,6 +20,7 @@ getPic();
         <img src={pic} alt="" />
         <h1>{prop.username}</h1>
         <p></p>
+        <button>remove</button>
         </div>
 }
 

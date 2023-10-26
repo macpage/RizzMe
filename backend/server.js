@@ -5,6 +5,7 @@ const mogoose = require('mongoose');
 const { default: mongoose } = require('mongoose');
 const userModel = require('./model/user');
 const ImageModel = require('./model/image');
+const MatchSchema = require('./model/match');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
@@ -126,9 +127,6 @@ app.get('/updateInfo', (req, res) => {
 });
 
 app.get('/getInfos', (req, res) => {
-  console.log('lol');
-  console.log(req.query);
-  console.log(req.query.username);
   userModel
     .find()
     .then((user) => res.json(user))
@@ -136,9 +134,6 @@ app.get('/getInfos', (req, res) => {
 });
 
 app.get('/updateLiked', (req, res) => {
-  console.log('broooo');
-  console.log(req.query.username);
-  console.log(req.query.liked);
   userModel
     .findOneAndUpdate(
       { username: req.query.username },
@@ -151,9 +146,26 @@ app.get('/updateLiked', (req, res) => {
 });
 
 app.get('/getLiked', (req, res) => {
-  console.log('found: ' + req.query.username);
   userModel
     .findOne({ username: req.query.username })
     .then((user) => res.json(user))
     .catch((err) => res.json(err));
 });
+
+app.post('/addLike', async (req, res) => {
+  let id;
+  console.log('broo');
+  console.log(req.body.liked[0]);
+  console.log('finding user');
+  console.log(req.body.username);
+  const user = await userModel.findOne({ username: req.body.username });
+  console.log(user);
+  const Match = new MatchSchema({
+    userID: user.id,
+    likedUserID: req.body.liked[0],
+  });
+
+  Match.save();
+});
+
+app.post('/user', (req, res) => {});
