@@ -6,6 +6,7 @@ function SwipePage(prop){
     const [profiles,setProfiles] = useState([]);
 let profileArr = [];
 let [liked,setLiked] = useState("empty");
+let [userList,setUserList] = useState("empty");
 const [trash,setTrash] = useState([]);
 const [counter,setCounter] = useState(0);
 const empty = document.querySelector("#EmptyPage");
@@ -59,7 +60,7 @@ loadProfiles();
    async function filterLiked(){
     //await axios.get("http://localhost:3004/getLiked" ,{params: {username: prop.username}}).then(res=>(liked = res.data.liked));
     await axios.get("http://localhost:3004/checkLike").then(res=> liked = res.data);
-   
+    await axios.get("http://localhost:3004/Users").then(res=>userList=res.data)
   
         const profs = document.querySelectorAll("#SwipeProfile");
         profs.forEach((e,index) => {
@@ -70,9 +71,14 @@ loadProfiles();
                 e.style.display = "none";
             }
 
-          liked.forEach(l => {
-            console.log(l.likedUserID)
-            console.log(e.firstChild.childNodes[1].innerHTML)
+          liked.forEach((l) => {
+           
+            userList.forEach(u =>{
+               
+                if(l.likedUserID == u._id){
+                    console.log("booiinga")
+                }
+            })
           })
     
            

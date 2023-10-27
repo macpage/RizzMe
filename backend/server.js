@@ -173,4 +173,9 @@ app.get('/checkLike', async (req, res) => {
   console.log(user);
 });
 
+app.get('/Users', async (req, res) => {
+  const users = await userModel.find({});
+  res.json(users);
+});
+
 app.post('/checkMatch', (req, res) => {});
