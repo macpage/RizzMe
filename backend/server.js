@@ -153,7 +153,6 @@ app.get('/getLiked', (req, res) => {
 });
 
 app.post('/addLike', async (req, res) => {
-  let id;
   console.log('broo');
   console.log(req.body.liked[0]);
   console.log('finding user');
@@ -168,4 +167,10 @@ app.post('/addLike', async (req, res) => {
   Match.save();
 });
 
-app.post('/user', (req, res) => {});
+app.get('/checkLike', async (req, res) => {
+  const user = await MatchSchema.find({});
+  res.json(user);
+  console.log(user);
+});
+
+app.post('/checkMatch', (req, res) => {});

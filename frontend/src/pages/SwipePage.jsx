@@ -57,7 +57,8 @@ loadProfiles();
     }
 
    async function filterLiked(){
-    await axios.get("http://localhost:3004/getLiked" ,{params: {username: prop.username}}).then(res=>(liked = res.data.liked));
+    //await axios.get("http://localhost:3004/getLiked" ,{params: {username: prop.username}}).then(res=>(liked = res.data.liked));
+    await axios.get("http://localhost:3004/checkLike").then(res=> liked = res.data);
    
   
         const profs = document.querySelectorAll("#SwipeProfile");
@@ -69,11 +70,11 @@ loadProfiles();
                 e.style.display = "none";
             }
 
-            liked.forEach(l=>{
-                if(l==e.firstChild.childNodes[1].innerHTML){
-                    e.remove();
-                }
-            })
+          liked.forEach(l => {
+            console.log(l.likedUserID)
+            console.log(e.firstChild.childNodes[1].innerHTML)
+          })
+    
            
         });
 
