@@ -64,22 +64,33 @@ loadProfiles();
   
         const profs = document.querySelectorAll("#SwipeProfile");
         profs.forEach((e,index) => {
+            liked.forEach((l) => {
+           
+                userList.forEach(u =>{
+                   
+                    if(l.likedUserID == u._id){
+                       console.log(e.firstChild.childNodes[1].innerHTML)
+                       console.log(u._id)
+                       console.log(l.likedUserID)
+                       if(e.firstChild.childNodes[1].innerHTML == u.username){
+                        console.log("letsgoooo")
+                        e.style.display = "none";
+                        
+                       }
+                    }
+                })
+              })
             if(index == counter){
                e.style.display = "flex";
                
-            }else{
+            }
+            else{
                 e.style.display = "none";
             }
 
-          liked.forEach((l) => {
-           
-            userList.forEach(u =>{
-               
-                if(l.likedUserID == u._id){
-                    console.log("booiinga")
-                }
-            })
-          })
+
+
+
     
            
         });
