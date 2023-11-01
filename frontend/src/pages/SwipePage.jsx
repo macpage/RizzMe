@@ -6,19 +6,16 @@ function SwipePage(prop){
     const [profiles,setProfiles] = useState([]);
 let profileArr = [];
 let [liked,setLiked] = useState("empty");
-let [userList,setUserList] = useState("empty");
+let [userList,setUserList] = useState([]);
 const [trash,setTrash] = useState([]);
 const [counter,setCounter] = useState(0);
 const empty = document.querySelector("#EmptyPage");
 const [sp,setSp] = useState();
 
-async function findUser(){
-    let username = prop.username;
-    await axios.post("http://localhost:3004/user" , {username}).then(res=> console.log(res));
-    console.log("yoooo")
-}
 
-loadProfiles();
+
+
+
     async function loadProfiles(){
         
         if(profiles.length<1){
@@ -60,49 +57,36 @@ loadProfiles();
    async function filterLiked(){
     //await axios.get("http://localhost:3004/getLiked" ,{params: {username: prop.username}}).then(res=>(liked = res.data.liked));
     await axios.get("http://localhost:3004/checkLike").then(res=> liked = res.data);
-    await axios.get("http://localhost:3004/Users").then(res=>userList=res.data)
-  
-        const profs = document.querySelectorAll("#SwipeProfile");
-        profs.forEach((e,index) => {
-            liked.forEach((l) => {
-           
-                userList.forEach(u =>{
-                   
-                    if(l.likedUserID == u._id){
-                       console.log(e.firstChild.childNodes[1].innerHTML)
-                       console.log(u._id)
-                       console.log(l.likedUserID)
-                       if(e.firstChild.childNodes[1].innerHTML == u.username){
-                        console.log("letsgoooo")
-                        e.style.display = "none";
-                        
-                       }
-                    }
-                })
-              })
-            if(index == counter){
-               e.style.display = "flex";
-               
-            }
-            else{
-                e.style.display = "none";
-            }
-
-//bro letsgooo
-
+    if(userList.length<1){
+        console.log("emoty")
+        await axios.get("http://localhost:3004/Users").then(res=>setUserList(res.data))
+        profileArr = userList;
+    }
 
     
-           
-        });
+    console.log(profileArr);
+  userList.forEach(e => {
 
-        setSp(document.querySelector("#SwipeProfile"));
-        if(sp){
+        liked.forEach((l) => {
+          
+            userList.forEach(u =>{
+               
+               console.log(l.likedUserID);
+               console.log("bro");
+               console.log(u._id);
+                if(l.likedUserID == u._id){
+                   console.log(u.username)
+                }
+            })
+
             
-            empty.style.display = "none";
-           }else{
-            empty.style.display = "block";
-           }
+          })
+
+    });
+
     }
+
+    filterLiked();
 
     function dislike(profile){
         profileArr.forEach(e=>{
@@ -165,7 +149,7 @@ loadProfiles();
     }
     
     return <div id="SwipePage">
-      { profileArr.map(profs => <SwipeProfile id={counter} filterLiked={filterLiked} swipeBack={swipeBack} like={like} dislike={dislike} username={profs.username} key={profs._id}> </SwipeProfile>)}
+      { profileArr.map(profs => <SwipeProfile id={counter} swipeBack={swipeBack} like={like} dislike={dislike} username={profs.username} key={profs._id}> </SwipeProfile>)}
       <EmptyPage></EmptyPage>
     </div>
 }
