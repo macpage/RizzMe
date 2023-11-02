@@ -154,14 +154,15 @@ app.get('/getLiked', (req, res) => {
 
 app.post('/addLike', async (req, res) => {
   console.log('broo');
-  console.log(req.body.liked[0]);
+  console.log(req.body);
+  console.log(req.body.likedID);
   console.log('finding user');
   console.log(req.body.username);
   const user = await userModel.findOne({ username: req.body.username });
   console.log(user);
   const Match = new MatchSchema({
     userID: user.id,
-    likedUserID: req.body.liked[0],
+    likedUserID: req.body.likedID,
   });
 
   Match.save();

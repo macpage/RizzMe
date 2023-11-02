@@ -14,7 +14,7 @@ const [imgText,setImgText] = useState(null);
 
 const [notFound,setNotFound] = useState(true);
 
-prop.filterLiked();
+
 
 async function loadImages(){
     await  axios.get("http://localhost:3004/getImage").then(res=>{pics = res.data});
