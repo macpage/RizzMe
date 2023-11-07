@@ -18,7 +18,7 @@ let showLiked ;
 async function getLikes(){
   if(liked[0] == null){
    await axios.get("http://localhost:3004/updateLiked", {params:{username: prop.username}}).then(data => {setLiked(data.data.liked)} ).catch(err=>console.log(err))
-   //brooo this game road to silver pls
+   //lets gooo
     }
 }
 getLikes();
