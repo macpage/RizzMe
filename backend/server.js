@@ -171,7 +171,6 @@ app.post('/addLike', async (req, res) => {
 app.get('/checkLike', async (req, res) => {
   const user = await MatchSchema.find({});
   res.json(user);
-  console.log(user);
 });
 
 app.get('/Users', async (req, res) => {
@@ -179,4 +178,22 @@ app.get('/Users', async (req, res) => {
   res.json(users);
 });
 
+app.get('/User/:username', async (req, res) => {
+  const user = await userModel.find({ username: req.params.username });
+  res.json(user);
+  console.log('USer');
+  console.log(user);
+});
+
 app.post('/checkMatch', (req, res) => {});
+
+app.get('/getLike/:ID', async (req, res) => {
+  const id = req.params.ID;
+  const user = await MatchSchema.find({ userID: id });
+
+  const user2 = await userModel.findById({ _id: '64fa5d7545d6a9e93ac60bbd' });
+  //res.json(user2);
+  console.log('user');
+  console.log(user);
+  console.log(user2.username);
+});

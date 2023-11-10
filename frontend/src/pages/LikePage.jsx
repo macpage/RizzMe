@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useId, useState } from "react";
 import LikedProfile from "../components/LikedProfile";
 
 
@@ -10,20 +10,43 @@ function LikePage(prop){
 const [liked,setLiked] = useState([null]);
 const [likes,setLikes] = useState([null]);
 const [imgs,setImgs] = useState([null]);
-
+const [ID,setID] = useState();
 const [showLikes,setShowLikes] = useState();
+const username = prop.username;
 
 let showLikedBy;
 let showLiked ; 
-async function getLikes(){
-  if(liked[0] == null){
-   await axios.get("http://localhost:3004/updateLiked", {params:{username: prop.username}}).then(data => {setLiked(data.data.liked)} ).catch(err=>console.log(err))
-   //lets gooooo
-    }
+
+const getLikes = async () => {
+
+  const user = await axios.get("http://localhost:3004/User/" + username).then();
+
+
+
+ // setLikes(response);
+ console.log("letsgoo");
+  console.log(user.data[0]._id);
+  setID(user.data[0]._id);
+  console.log("looool");
+  console.log(ID);
+
 }
-getLikes();
 
+useEffect(()=>{
+  getLikes();
+},[])
 
+useEffect(()=>{
+  const getID = async ()=>{
+       const response = await axios.get("http://localhost:3004/getLike/"+ID);
+           
+  console.log("yeaaahh");
+  console.log(response)
+  }
+
+  getID();
+
+},[ID])
 
 
 function change(show,b){
